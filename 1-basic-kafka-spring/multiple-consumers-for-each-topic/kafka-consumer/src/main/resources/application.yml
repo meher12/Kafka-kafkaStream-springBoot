@@ -1,0 +1,6 @@
+spring:
+  kafka:
+    consumer:
+      group-id: "default-spring-consumer"
+#      auto-offset-reset: latest
+
