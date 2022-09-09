@@ -1,1 +1,6 @@
+spring:
+  kafka:
+    consumer:
+      group-id: "json_consumer"
+
 

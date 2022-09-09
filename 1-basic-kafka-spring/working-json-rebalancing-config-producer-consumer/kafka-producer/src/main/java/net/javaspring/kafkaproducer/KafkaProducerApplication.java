@@ -8,9 +8,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.time.LocalDate;
-import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 @SpringBootApplication
 public class KafkaProducerApplication implements CommandLineRunner {
@@ -28,9 +26,10 @@ public class KafkaProducerApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
         for (int i = 0; i < 5; i++) {
 
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            LocalDate localDate = LocalDate.now();
-            var employee = new Employee("emp-" + i, "Employee" + i, dtf.format(localDate));
+//            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+//            LocalDate localDate = LocalDate.now();
+//            dtf.format(localDate)
+            var employee = new Employee("emp-" + i, "Employee-" + i, LocalDate.now());
             employeeJsonProducer.sendMessage(employee);
         }
     }

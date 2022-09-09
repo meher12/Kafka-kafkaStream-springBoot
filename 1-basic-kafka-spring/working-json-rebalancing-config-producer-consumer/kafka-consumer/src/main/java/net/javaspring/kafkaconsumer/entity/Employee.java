@@ -1,6 +1,5 @@
-package net.javaspring.kafkaproducer.entity;
+package net.javaspring.kafkaconsumer.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -8,9 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 import java.time.LocalDate;
-import java.time.ZonedDateTime;
 
 
 @Data
@@ -24,6 +21,6 @@ public class Employee {
     private String name;
 
     @JsonProperty("brith_date")
-    @JsonSerialize(using = LocalDateSerializer.class)
+    @JsonDeserialize(using = LocalDateDeserializer.class)
     private LocalDate brithDate;
 }
