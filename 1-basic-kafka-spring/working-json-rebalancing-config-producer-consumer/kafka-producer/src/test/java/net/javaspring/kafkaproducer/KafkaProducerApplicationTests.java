@@ -1,10 +1,10 @@
-package net.javaspring.workingjsonrebalancingconfigpc;
+package net.javaspring.kafkaproducer;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class WorkingJsonRebalancingConfigPCApplicationTests {
+class KafkaProducerApplicationTests {
 
 	@Test
 	void contextLoads() {
