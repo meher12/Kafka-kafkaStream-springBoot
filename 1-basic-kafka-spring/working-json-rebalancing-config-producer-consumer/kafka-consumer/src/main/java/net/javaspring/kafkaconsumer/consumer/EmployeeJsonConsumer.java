@@ -7,7 +7,7 @@ import net.javaspring.kafkaconsumer.entity.Employee;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
-@Service
+//@Service
 @Slf4j
 public class EmployeeJsonConsumer {
 

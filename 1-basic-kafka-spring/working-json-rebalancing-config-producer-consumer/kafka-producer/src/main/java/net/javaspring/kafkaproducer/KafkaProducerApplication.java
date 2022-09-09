@@ -1,20 +1,18 @@
 package net.javaspring.kafkaproducer;
 
-import net.javaspring.kafkaproducer.entity.Employee;
-import net.javaspring.kafkaproducer.producer.EmployeeJsonProducer;
+import net.javaspring.kafkaproducer.api.CommodityApi;
+import net.javaspring.kafkaproducer.sheduler.CommodityScheduler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
+@EnableScheduling
 public class KafkaProducerApplication implements CommandLineRunner {
 
-    @Autowired
-    private EmployeeJsonProducer employeeJsonProducer;
+
 
     public static void main(String[] args) {
 
@@ -24,13 +22,16 @@ public class KafkaProducerApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        for (int i = 0; i < 5; i++) {
 
-//            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-//            LocalDate localDate = LocalDate.now();
-//            dtf.format(localDate)
-            var employee = new Employee("emp-" + i, "Employee-" + i, LocalDate.now());
-            employeeJsonProducer.sendMessage(employee);
-        }
+
+
+//        for (int i = 0; i < 5; i++) {
+//
+////            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+////            LocalDate localDate = LocalDate.now();
+////            dtf.format(localDate)
+//            var employee = new Employee("emp-" + i, "Employee-" + i, LocalDate.now());
+//            employeeJsonProducer.sendMessage(employee);
+//        }
     }
 }
