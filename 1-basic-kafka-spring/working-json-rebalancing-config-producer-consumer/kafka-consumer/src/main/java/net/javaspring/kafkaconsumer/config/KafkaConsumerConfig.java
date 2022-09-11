@@ -2,6 +2,7 @@ package net.javaspring.kafkaconsumer.config;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
 import net.javaspring.kafkaconsumer.entity.CarLocation;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -16,6 +17,7 @@ import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.listener.adapter.RecordFilterStrategy;
 
 @Configuration
+@Slf4j
 public class KafkaConsumerConfig {
 
     @Autowired
@@ -30,6 +32,7 @@ public class KafkaConsumerConfig {
         return new DefaultKafkaConsumerFactory<Object, Object>(properties);
     }
 
+    // Custom Message Filter
     @Bean(name = "farLocationContainerFactory")
     public ConcurrentKafkaListenerContainerFactory<Object, Object> farLocationContainerFactory(
             ConcurrentKafkaListenerContainerFactoryConfigurer configurer) {
@@ -45,12 +48,11 @@ public class KafkaConsumerConfig {
                 try {
                     var carLocation = objectMapper.readValue(consumerRecord.toString(), CarLocation.class);
 
-                        return carLocation.getDistance() <= 100;
-
+                    return carLocation.getDistance() <= 100;
 
 
                 } catch (JsonProcessingException e) {
-                    // throw new RuntimeException(e);
+                     //throw new RuntimeException(e);
                     return false;
                 }
             }
