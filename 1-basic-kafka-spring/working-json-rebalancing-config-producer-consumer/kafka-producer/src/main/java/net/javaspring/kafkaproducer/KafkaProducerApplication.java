@@ -1,9 +1,5 @@
 package net.javaspring.kafkaproducer;
 
-import net.javaspring.kafkaproducer.api.CommodityApi;
-import net.javaspring.kafkaproducer.sheduler.CommodityScheduler;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;

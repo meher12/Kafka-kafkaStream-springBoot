@@ -1,4 +1,4 @@
-package net.javaspring.kafkaconsumer.entity;
+package net.javaspring.kafkaconsumer.entity.json;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
