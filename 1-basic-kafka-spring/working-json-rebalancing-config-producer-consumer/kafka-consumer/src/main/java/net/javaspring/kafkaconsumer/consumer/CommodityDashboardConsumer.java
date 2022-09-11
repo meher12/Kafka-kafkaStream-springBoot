@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-@Service
+//@Service
 @Slf4j
 public class CommodityDashboardConsumer {
 

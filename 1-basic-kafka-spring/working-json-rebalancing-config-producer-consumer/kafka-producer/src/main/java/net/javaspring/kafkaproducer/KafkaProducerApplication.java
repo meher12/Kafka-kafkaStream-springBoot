@@ -10,7 +10,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
 @EnableScheduling
-public class KafkaProducerApplication implements CommandLineRunner {
+public class KafkaProducerApplication {
 
 
 
@@ -20,18 +20,18 @@ public class KafkaProducerApplication implements CommandLineRunner {
     }
 
 
-    @Override
-    public void run(String... args) throws Exception {
-
-
-
-//        for (int i = 0; i < 5; i++) {
+//    @Override
+//    public void run(String... args) throws Exception {
 //
-////            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-////            LocalDate localDate = LocalDate.now();
-////            dtf.format(localDate)
-//            var employee = new Employee("emp-" + i, "Employee-" + i, LocalDate.now());
-//            employeeJsonProducer.sendMessage(employee);
-//        }
-    }
+//
+//
+////        for (int i = 0; i < 5; i++) {
+////
+//////            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+//////            LocalDate localDate = LocalDate.now();
+//////            dtf.format(localDate)
+////            var employee = new Employee("emp-" + i, "Employee-" + i, LocalDate.now());
+////            employeeJsonProducer.sendMessage(employee);
+////        }
+//    }
 }

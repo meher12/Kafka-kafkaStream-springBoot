@@ -1,6 +1,6 @@
 spring:
   kafka:
     consumer:
-      group-id: "json_consumer"
+      group-id: "rebalance_consumer"
 
 

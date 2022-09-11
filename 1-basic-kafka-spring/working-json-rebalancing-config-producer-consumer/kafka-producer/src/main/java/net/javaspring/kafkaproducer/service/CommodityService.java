@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
-@Service
+//@Service
 public class CommodityService {
     private static final Map<String, Commodity> COMMODITY_BASE = new HashMap<String, Commodity>();
     private static final String COPPER = "copper";

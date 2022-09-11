@@ -7,11 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
 import java.util.List;
 
-@RestController
-@RequestMapping("/api/commodity/v1")
+//@RestController
+//@RequestMapping("/api/commodity/v1")
 public class CommodityApi {
 
     @Autowired
@@ -19,6 +18,7 @@ public class CommodityApi {
 
     @GetMapping(value = "/all")
     public List<Commodity> generateCommodities() {
+
         return commodityService.createDummyCommodities();
     }
 }
