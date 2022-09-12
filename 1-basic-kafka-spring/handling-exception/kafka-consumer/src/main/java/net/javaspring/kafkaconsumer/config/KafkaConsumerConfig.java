@@ -114,6 +114,7 @@ public class KafkaConsumerConfig {
     7. Message is not processed successfully.
     Dead letter queue storing of these messages allows developers to look for common patterns and potential software problems.
    **** By Wikipédia ****
+   A Dead Letter Queue in Kafka is one or more Kafka topics that receive and store messages that could not be processed in another streaming pipeline because of an error.
     * *
     * */
     @Bean(value = "invoiceDltContainerFactory")

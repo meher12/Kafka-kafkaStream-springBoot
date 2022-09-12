@@ -1,0 +1,19 @@
+Use Case:
+- Commodity trading company with multiple branches
+- Branche submit purchase order to head office
+- After process:
+   - Pattern analysis
+   - Reward
+   - Big data storage
+- Speed is the key
+- Branch office submit each order once
+- Head office process using kafka
+
+Microservices & Client:
+- Spring Boot
+  - Kafka Order: port 9001
+  - Kafka Pattern
+  - Kafka Reward
+  - Kafka Storage
+- Client
+  - Postman  
