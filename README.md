@@ -6,4 +6,8 @@
   * KafkaListener Error Handler.
   * Global Error Handler
   * Retrying Consumer (RetryTemplate)
-  * Dead Letter Topic
+  * Dead Letter Topic (Dead Letter Queues):
+     - root@1f282ce576e1:/# kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t_invoice --offset earliest --partition 0
+     - root@1f282ce576e1:/# kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t_invoice --offset earliest --partition 1
+     - root@1f282ce576e1:/# kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t_invoice_dlt --offset earliest --partition 0
+     - root@1f282ce576e1:/# kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t_invoice_dlt --offset earliest --partition 1

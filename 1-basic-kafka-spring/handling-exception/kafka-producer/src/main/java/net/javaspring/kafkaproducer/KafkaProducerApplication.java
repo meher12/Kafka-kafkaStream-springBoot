@@ -4,8 +4,10 @@ import net.javaspring.kafkaproducer.entity.FoodOrder;
 import net.javaspring.kafkaproducer.entity.SimpleNumber;
 import net.javaspring.kafkaproducer.producer.FoodOrderProducer;
 import net.javaspring.kafkaproducer.producer.ImageProducer;
+import net.javaspring.kafkaproducer.producer.InvoiceProducer;
 import net.javaspring.kafkaproducer.producer.SimpleNumberProducer;
 import net.javaspring.kafkaproducer.service.ImageService;
+import net.javaspring.kafkaproducer.service.InvoiceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -25,6 +27,12 @@ public class KafkaProducerApplication implements CommandLineRunner {
     @Autowired
     private ImageService imageService;
 
+    @Autowired
+    private InvoiceService invoiceService;
+
+    @Autowired
+    private InvoiceProducer invoiceProducer;
+
     public static void main(String[] args) {
 
         SpringApplication.run(KafkaProducerApplication.class, args);
@@ -41,6 +49,7 @@ public class KafkaProducerApplication implements CommandLineRunner {
         producer.send(chickenOrder);
         producer.send(fishOrder);
         producer.send(pizzaOrder);
+        
         // ----------------- GlobalError Handler  -----------------
         for (int i = 1; i < 4; i++) {
             var simpleNumber = new SimpleNumber(i);
@@ -55,6 +64,18 @@ public class KafkaProducerApplication implements CommandLineRunner {
         imageProducer.sendImage(image1);
         imageProducer.sendImage(image2);
         imageProducer.sendImage(image3);
+
+        // ----------------- Dead Letter Queues  -----------------
+        for (int i = 0; i < 10; i++) {
+            var invoice  = invoiceService.generateInvoice();
+
+            if (i >= 5) {
+                invoice.setAmount(-1);
+            }
+
+            invoiceProducer.sendInvoice(invoice);
+        }
+        
 
     }
 
