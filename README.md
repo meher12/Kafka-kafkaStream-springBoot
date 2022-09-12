@@ -5,5 +5,5 @@
 3. Handling Exception:
   * KafkaListener Error Handler.
   * Global Error Handler
-  * Retrying Consumer
+  * Retrying Consumer (RetryTemplate)
   * Dead Letter Topic
