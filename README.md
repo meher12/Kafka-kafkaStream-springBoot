@@ -12,11 +12,20 @@
      - root@1f282ce576e1:/# kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t_invoice_dlt --offset earliest --partition 0
      - root@1f282ce576e1:/# kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t_invoice_dlt --offset earliest --partition 1
 ### 2. Kafka in Microservice Architecture and Pattern:
-1. Setting Up the Projects
+1. Setting Up the Order producer project:
     * Create entities
     * Create producer
     * Create repository
     * Auto create topic
-2.  Handle kafka publish result (addCallback) for OrderProducer
-3. Create Order API (controller, service, request and response, action)
-4. Test API with postman file collection
+    * Create broker message and promotion
+    * Handle kafka publish result (addCallback) for OrderProducer
+    * Create Order, Promotion API (controller, service, request and response, action)
+    *  * create promotion topic:
+         kafka-topics.sh --bootstrap-server localhost:9092 --create --topic t.commodity.promotion --partitions 1 --replication-factor 1
+    * kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.promotion
+    * Test API with postman json file collection
+   
+2. Setting Up the pattern consumer project
+3. Setting Up the storage consumer project:
+  
+

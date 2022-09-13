@@ -2,6 +2,7 @@
 	"info": {
 		"_postman_id": "8b968a39-a48e-4032-8f6f-841c11a54d55",
 		"name": "kafkaOrder",
+		"description": "collection of test",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "19388834"
 	},
@@ -68,6 +69,36 @@
 		},
 		{
 			"name": "Order 3 Random item",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"orderLocation\": \"{{$randomCountry}}\",\n    \"creditCardNumber\": \"{{$randomBankAccount}}{{$randomBankAccount}}\",\n     \"orderEvents\": [\n         {\n           \"orderEventNameRq\": \"{{$randomProductMaterial}} {{$randomProduct}}\",\n           \"orderEventPriceRq\": \"{{$randomInt}}\",\n           \"orderEventQuantityRq\": \"{{$randomInt}}\"\n         }\n     ]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:9002/api/order",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Promotion",
 			"request": {
 				"method": "POST",
 				"header": [

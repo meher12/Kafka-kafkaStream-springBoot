@@ -18,6 +18,8 @@ public class OrderProducer {
     private static final Logger LOGGER = LoggerFactory.getLogger(OrderProducer.class);
 
     public void publish(OrderMessage message){
+
+        // Callback scenario
         kafkaTemplate.send("t.commodity.order", message.getOrderNumber(), message)
                 .addCallback(new ListenableFutureCallback<SendResult<String, OrderMessage>>() {
                     @Override
