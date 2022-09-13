@@ -12,3 +12,9 @@
      - root@1f282ce576e1:/# kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t_invoice_dlt --offset earliest --partition 0
      - root@1f282ce576e1:/# kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t_invoice_dlt --offset earliest --partition 1
 ### 2. Kafka in Microservice Architecture and Pattern:
+1. Setting Up the Projects
+    * Create entities
+    * Create producer
+    * Create repository
+    * Auto create topic
+2.  Handle kafka publish result (addCallback)
