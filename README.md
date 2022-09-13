@@ -17,4 +17,6 @@
     * Create producer
     * Create repository
     * Auto create topic
-2.  Handle kafka publish result (addCallback)
+2.  Handle kafka publish result (addCallback) for OrderProducer
+3. Create Order API (controller, service, request and response, action)
+4. Test API with postman file collection
