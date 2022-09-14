@@ -24,6 +24,7 @@
          kafka-topics.sh --bootstrap-server localhost:9092 --create --topic t.commodity.promotion --partitions 1 --replication-factor 1
     * kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.promotion
     * Test API with postman json file collection
+    * Add header to order producer, pattern and reward consumer to read the haeders and body message
    
 2. Setting Up the pattern consumer project
 3. Setting Up the storage consumer project:

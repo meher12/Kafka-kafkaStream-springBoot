@@ -11,12 +11,12 @@ public class OrderListener {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(OrderListener.class);
 
-    @KafkaListener(topics = "t.commodity.order")
+    @KafkaListener(topics = "t.commodity.order", groupId = "cg-pattern")
     public void listen(OrderMessage message){
         var totalItemAmount= message.getPrice() * message.getQuantity();
 
-        LOGGER.info("Processing order {}, item {}, credit card number {} {} Total amount for this item is {}",
-                message.getOrderNumber(), message.getEventName(),
+        LOGGER.info("Processing order {}, item {}, credit card number {}, Total amount for this item is {}",
+                message.getOrderNumber(), message.getItemName(),
                 message.getCreditCardNumber(), totalItemAmount);
     }
 }

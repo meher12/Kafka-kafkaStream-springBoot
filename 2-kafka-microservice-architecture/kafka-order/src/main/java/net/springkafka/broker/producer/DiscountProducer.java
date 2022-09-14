@@ -10,6 +10,8 @@ import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Service;
 import org.springframework.util.concurrent.ListenableFutureCallback;
 
+import java.util.concurrent.ExecutionException;
+
 @Service
 public class DiscountProducer {
 
@@ -20,7 +22,7 @@ public class DiscountProducer {
 
     public void publish(DiscountMessage message){
 
-        kafkaTemplate.send("t.commodity.discount", message.getDiscountCode(), message)
+        kafkaTemplate.send("t.commodity.promotion", message.getDiscountCode(), message)
                 .addCallback(new ListenableFutureCallback<SendResult<String, DiscountMessage>>() {
                     @Override
                     public void onFailure(Throwable ex) {
@@ -33,6 +35,7 @@ public class DiscountProducer {
                                 message.getDiscountPercentage());
                     }
                 });
+
 
     }
 }

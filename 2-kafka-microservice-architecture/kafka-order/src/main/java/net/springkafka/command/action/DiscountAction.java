@@ -17,7 +17,7 @@ public class DiscountAction {
 
     public void publishToKafka(DiscountRequest request) {
 
-        var message = new DiscountMessage(request.getDiscountCode(), request.getDiscountCode());
+        var message = new DiscountMessage(request.getDiscountCode(), request.getDiscountPercentage()+"%");
         discountProducer.publish(message);
     }
 }

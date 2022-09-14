@@ -4,7 +4,8 @@ public class PromotionMessage {
 
     private String promotionCode;
 
-
+    public PromotionMessage() {
+    }
 
     public PromotionMessage(String promotionCode) {
         this.promotionCode = promotionCode;

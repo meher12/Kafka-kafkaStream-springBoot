@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 public class OrderMessage {
 
     private String creditCardNumber;
-    private String eventName;
+    private String itemName;
 
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
@@ -29,12 +29,12 @@ public class OrderMessage {
         this.creditCardNumber = creditCardNumber;
     }
 
-    public String getEventName() {
-        return eventName;
+    public String getItemName() {
+        return itemName;
     }
 
-    public void setEventName(String eventName) {
-        this.eventName = eventName;
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
     }
 
     public LocalDateTime getOrderDateTime() {
