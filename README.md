@@ -29,6 +29,6 @@
 2. Setting Up the pattern consumer project
 3. Setting Up the reward consumer project
 4. Setting Up the storage consumer project
-5. Asynchronous Request/Reply (Order & Reward)
+5. Asynchronous Request/Reply (Order & Reward) --- Replying with @SendTo
   
 
