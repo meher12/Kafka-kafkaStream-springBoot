@@ -25,14 +25,14 @@ public class OrderProducer {
                     @Override
                     public void onFailure(Throwable ex) {
                         LOGGER.error("Order {}, item {} failed to published ", message.getOrderNumber(),
-                                message.getEventName());
+                                message.getItemName());
                     }
 
                     @Override
                     public void onSuccess(SendResult<String, OrderMessage> result) {
 
                         LOGGER.info("Just a dummy message for order {}, item {} published successfully ", message.getOrderNumber(),
-                                message.getEventName());
+                                message.getItemName());
 
                     }
                 });

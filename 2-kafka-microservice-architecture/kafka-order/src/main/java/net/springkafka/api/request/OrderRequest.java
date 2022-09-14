@@ -6,7 +6,7 @@ public class OrderRequest {
 
     private String orderLocation;
     private String creditCardNumber;
-    private List<OrderEventRequest> orderEvents;
+    private List<OrderItemRequest> orderItems;
 
     public String getOrderLocation() {
         return orderLocation;
@@ -24,12 +24,12 @@ public class OrderRequest {
         this.creditCardNumber = creditCardNumber;
     }
 
-    public List<OrderEventRequest> getOrderEvents() {
-        return orderEvents;
+    public List<OrderItemRequest> getOrderItems() {
+        return orderItems;
     }
 
-    public void setOrderEvents(List<OrderEventRequest> orderEvents) {
-        this.orderEvents = orderEvents;
+    public void setOrderItems(List<OrderItemRequest> orderItems) {
+        this.orderItems = orderItems;
     }
 
     @Override
@@ -37,7 +37,7 @@ public class OrderRequest {
         return "OrderRequest{" +
                 "orderLocation='" + orderLocation + '\'' +
                 ", creditCardNumber='" + creditCardNumber + '\'' +
-                ", orderEvents=" + orderEvents +
+                ", orderItems=" + orderItems +
                 '}';
     }
 }

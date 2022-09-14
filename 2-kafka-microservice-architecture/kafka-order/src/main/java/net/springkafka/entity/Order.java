@@ -27,19 +27,19 @@ public class Order {
     private LocalDateTime orderDateTime;
 
     @OneToMany(mappedBy = "order")
-    private List<OrderEvent> orderEventList;
+    private List<OrderItem> orderItems;
 
     public Order() {
     }
 
     public Order(int orderId, String orderNumber, String creditCartNumber, String orderLocation,
-                 LocalDateTime orderDateTime,  List<OrderEvent> orderEventList) {
+                 LocalDateTime orderDateTime,  List<OrderItem> orderItemList) {
         this.orderId = orderId;
         this.orderNumber = orderNumber;
         this.creditCartNumber = creditCartNumber;
         this.orderLocation = orderLocation;
         this.orderDateTime = orderDateTime;
-        this.orderEventList = orderEventList;
+        this.orderItems = orderItemList;
     }
 
     public int getOrderId() {
@@ -82,12 +82,12 @@ public class Order {
         this.orderDateTime = orderDateTime;
     }
 
-    public List<OrderEvent> getOrderEventList() {
-        return orderEventList;
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
     }
 
-    public void setOrderEventList(List<OrderEvent> orderEventList) {
-        this.orderEventList = orderEventList;
+    public void setOrderItems(List<OrderItem> orderItemList) {
+        this.orderItems = orderItemList;
     }
 
     @Override
@@ -98,7 +98,7 @@ public class Order {
                 ", creditCartNumber='" + creditCartNumber + '\'' +
                 ", orderLocation='" + orderLocation + '\'' +
                 ", orderDateTime=" + orderDateTime +
-                ", orderEventList=" + orderEventList +
+                ", orderEventList=" + orderItems +
                 '}';
     }
 }

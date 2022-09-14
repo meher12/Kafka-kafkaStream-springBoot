@@ -20,7 +20,7 @@ public class OrderService {
         orderAction.saveToDataBase(order);
 
         // 3. flatten the item & order as kafka message, and publish it
-        order.getOrderEventList().forEach(orderAction::publishToKafka);
+        order.getOrderItems().forEach(orderAction::publishToKafka);
 
         // 4. return order number (auto generated)
         return order.getOrderNumber();

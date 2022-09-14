@@ -1,12 +1,12 @@
 package net.springkafka.command.action;
 
-import net.springkafka.api.request.OrderEventRequest;
+import net.springkafka.api.request.OrderItemRequest;
 import net.springkafka.api.request.OrderRequest;
 import net.springkafka.broker.message.OrderMessage;
 import net.springkafka.broker.producer.OrderProducer;
 import net.springkafka.entity.Order;
-import net.springkafka.entity.OrderEvent;
-import net.springkafka.repository.OrderEventRepository;
+import net.springkafka.entity.OrderItem;
+import net.springkafka.repository.OrderItemRepository;
 import net.springkafka.repository.OrderRepository;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ public class OrderAction {
     private OrderRepository orderRepository;
 
     @Autowired
-    private OrderEventRepository orderEventRepository;
+    private OrderItemRepository orderItemRepository;
 
     public Order convertToOrder(OrderRequest request) {
         var resultOrder = new Order();
@@ -36,41 +36,41 @@ public class OrderAction {
         resultOrder.setOrderDateTime(LocalDateTime.now());
         resultOrder.setOrderNumber(RandomStringUtils.randomAlphabetic(8).toUpperCase());
 
-        List<OrderEvent> items = request.getOrderEvents().stream().map(this::convertToOrderEvent)
+        List<OrderItem> items = request.getOrderItems().stream().map(this::convertToOrderEvent)
                 .collect(Collectors.toList());
         items.forEach(item -> item.setOrder(resultOrder));
 
-        resultOrder.setOrderEventList(items);
+        resultOrder.setOrderItems(items);
         return resultOrder;
     }
 
-    private OrderEvent convertToOrderEvent(OrderEventRequest eventRequest){
-        var result  = new OrderEvent();
+    private OrderItem convertToOrderEvent(OrderItemRequest itemRequest){
+        var result  = new OrderItem();
 
-        result.setOrderEventName(eventRequest.getOrderEventNameRq());
-        result.setOrderEventPrice(eventRequest.getOrderEventPriceRq());
-        result.setOrderEventQuantity(eventRequest.getOrderEventQuantityRq());
+        result.setItemName(itemRequest.getNameRq());
+        result.setPrice(itemRequest.getPriceRq());
+        result.setQuantity(itemRequest.getQuantityRq());
 
         return result;
     }
 
     public void saveToDataBase(Order order) {
         orderRepository.saveAndFlush(order);
-        order.getOrderEventList().forEach(orderEventRepository::saveAndFlush);
+        order.getOrderItems().forEach(orderItemRepository::saveAndFlush);
     }
 
-    public void publishToKafka(OrderEvent orderEvent) {
-        var orderMesaage  = new OrderMessage();
+    public void publishToKafka(OrderItem orderItem) {
+        var orderMessage  = new OrderMessage();
 
-        orderMesaage.setEventName(orderEvent.getOrderEventName());
-        orderMesaage.setPrice(orderEvent.getOrderEventPrice());
-        orderMesaage.setQuantity(orderEvent.getOrderEventQuantity());
+        orderMessage.setItemName(orderItem.getItemName());
+        orderMessage.setPrice(orderItem.getPrice());
+        orderMessage.setQuantity(orderItem.getQuantity());
 
-        orderMesaage.setOrderDateTime(orderEvent.getOrder().getOrderDateTime());
-        orderMesaage.setOrderLocation(orderEvent.getOrder().getOrderLocation());
-        orderMesaage.setOrderNumber(orderEvent.getOrder().getOrderNumber());
-        orderMesaage.setCreditCardNumber(orderEvent.getOrder().getCreditCartNumber());
+        orderMessage.setOrderDateTime(orderItem.getOrder().getOrderDateTime());
+        orderMessage.setOrderLocation(orderItem.getOrder().getOrderLocation());
+        orderMessage.setOrderNumber(orderItem.getOrder().getOrderNumber());
+        orderMessage.setCreditCardNumber(orderItem.getOrder().getCreditCartNumber());
 
-        orderProducer.publish(orderMesaage);
+        orderProducer.publish(orderMessage);
     }
 }
