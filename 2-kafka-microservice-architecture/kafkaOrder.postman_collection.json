@@ -110,7 +110,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"promotionCodeRq\": \"{{$randomWord}}{{$randomInt}}\"\n\n}"
+					"raw": "{\n    \"promotionCodeRq\": \"{{$randomWord}}{{$randomInt}}\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:9002/api/promotion",
@@ -126,6 +126,53 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Create Discount",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.collectionVariables.set (\"randomNum\", _.random (5,20));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"discountCode\": \"{{$randomWord}}{{$randomInt}}\",\n    \"discountPercentage\": \"{{randomNum}}\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:9002/api/discount",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"discount"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "randomNum",
+			"value": ""
 		}
 	]
 }
