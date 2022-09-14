@@ -1,17 +1,30 @@
-server:
-  port: 8083
+logging:
+  pattern:
+    console: "[Kafka Reward] %clr(%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"
 
 spring:
-    kafka:
-      consumer:
-        bootstrap-servers:
-          - localhost:9092
-        group-id: "cg-reward"
-        auto-offset-reset: earliest
-        key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-        value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
-        properties:
-          spring:
-            json:
-              trusted:
-                packages: "*"
+  main:
+    banner-mode: OFF
+    log-startup-info: false
+  kafka:
+    listener:
+      missing-topics-fatal: false
+#      for reward reply this producer
+    producer:
+      bootstrap-servers:
+        - localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    consumer:
+      bootstrap-servers:
+        - localhost:9092
+      group-id: "cg-reward"
+      auto-offset-reset: earliest
+      enable-auto-commit: true
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring:
+          json:
+            trusted:
+              packages: net.springkafka.broker.message

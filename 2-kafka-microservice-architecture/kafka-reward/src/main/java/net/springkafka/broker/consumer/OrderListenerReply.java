@@ -2,16 +2,19 @@ package net.springkafka.broker.consumer;
 
 import lombok.extern.slf4j.Slf4j;
 import net.springkafka.broker.message.OrderMessage;
+import net.springkafka.broker.message.OrderReplyMessage;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Service;
 
-//@Service
+@Service
 @Slf4j
-public class OrderListener {
+public class OrderListenerReply {
 
     @KafkaListener(topics = "t.commodity.order", groupId = "cg-reward")
-    public void listen(ConsumerRecord<String, OrderMessage> consumerRecord) {
+    @SendTo("t.commodity.order-reply")
+    public OrderReplyMessage listen(ConsumerRecord<String, OrderMessage> consumerRecord) {
         var headers = consumerRecord.headers();
         var orderMessage = consumerRecord.value();
 
@@ -25,6 +28,14 @@ public class OrderListener {
         var bonusAmount = (bonusPercentage / 100) * orderMessage.getPrice() * orderMessage.getQuantity();
 
         log.info("Surprise bonus is {}", bonusAmount);
+
+        var replyMessage = new OrderReplyMessage();
+        replyMessage.setReplyMessage("Order: " + orderMessage.getOrderNumber() + " Item: " + orderMessage.getItemName()
+                + " processed. ");
+        log.info("########### Request Reply ############");
+        log.info("request reply message is: {}", replyMessage);
+        log.info(":::::::: ::::: ;)");
+        return replyMessage;
 
     }
 }
