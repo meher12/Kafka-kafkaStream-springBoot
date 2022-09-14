@@ -5,7 +5,13 @@ public class DiscountMessage {
     private String discountCode;
     private String discountPercentage;
 
+    public DiscountMessage() {
+    }
 
+    public DiscountMessage(String discountCode, String discountPercentage) {
+        this.discountCode = discountCode;
+        this.discountPercentage = discountPercentage;
+    }
 
     public String getDiscountCode() {
         return discountCode;

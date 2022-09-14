@@ -18,7 +18,7 @@
     * Create repository
     * Auto create topic
     * Create broker message and promotion
-    * Handle kafka publish result (addCallback) for OrderProducer
+    * Handle kafka publish result (addCallback()/get()) for OrderProducer
     * Create Order, Promotion API (controller, service, request and response, action)
     *  * create promotion topic:
          kafka-topics.sh --bootstrap-server localhost:9092 --create --topic t.commodity.promotion --partitions 1 --replication-factor 1
@@ -28,7 +28,12 @@
    
 2. Setting Up the pattern consumer project
 3. Setting Up the reward consumer project
-4. Setting Up the storage consumer project
+4. Setting Up the storage consumer project, send two types of message to the same topic with these annotations :
+    ```
+    @KafkaListener(topics = "t.commodity.promotion", groupId = "cg-storage")
+    AND
+    @KafkaHandler
+    ```
 5. Asynchronous Request/Reply (Order & Reward) --- Replying with @SendTo
   
 
