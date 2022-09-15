@@ -35,5 +35,7 @@
     @KafkaHandler
     ```
 5. Asynchronous Request/Reply (Order & Reward) --- Replying with @SendTo
+### 3. Kafka Streams:
+1. Create project kafka-stream
   
 
