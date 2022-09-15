@@ -23,9 +23,11 @@ public class KafkaStreamConfig {
         props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
         props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
         props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
+        // Kafka streams deserialization error handling:
+        // Config to log the error & continue processing
         props.put("default.deserialization.exception.handler", LogAndContinueExceptionHandler.class);
+        // Config to log the error & stop processing
         // props.put("default.deserialization.exception.handler", LogAndFailExceptionHandler.class);
-
 
         return new KafkaStreamsConfiguration(props);
 
