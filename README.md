@@ -38,5 +38,7 @@
 ### 3. Kafka Streams:
 1. Create project kafka-stream
 2. Use Serdes.String()
+3. Using Json Serde
+4. Use Custom Json Serde
   
 

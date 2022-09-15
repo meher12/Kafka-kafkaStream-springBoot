@@ -13,13 +13,13 @@ import org.apache.kafka.streams.kstream.Printed;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
+//@Configuration
 @Slf4j
 public class PromotionUppercaseJsonStream {
 
     private ObjectMapper objectMapper = new ObjectMapper();
 
-    @Bean
+   // @Bean
     public KStream<String, String> kstreamPromotionUppercase(StreamsBuilder builder) {
         var stringSerde = Serdes.String();
 

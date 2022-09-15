@@ -11,8 +11,8 @@ public class PromotionUppercaseListener {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PromotionUppercaseListener.class);
 
-    @KafkaListener(topics = "t.commodity.promotion-uppercase", groupId = "cg-storage")
+    @KafkaListener(topics = "t.commodity.promotion-uppercase", groupId = "cg-storage", containerFactory = "kafkaListenerContainerFactory")
     public void listenPromotion(PromotionMessage message) {
-        LOGGER.info("Processing uppercase promotion : {}", message);
+        LOGGER.info("Processing uppercase promotion :: {}", message);
     }
 }

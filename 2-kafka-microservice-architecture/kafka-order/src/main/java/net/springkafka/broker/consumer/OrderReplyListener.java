@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
-
 // consumer for reward reply producer
 public class OrderReplyListener {
 

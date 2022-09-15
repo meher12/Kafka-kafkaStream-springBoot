@@ -21,7 +21,7 @@ spring:
         - localhost:9092
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-#      for reply reward producer
+    #      for reply reward producer
     consumer:
       bootstrap-servers:
         - localhost:9092
@@ -34,4 +34,6 @@ spring:
         spring:
           json:
             trusted:
-              packages: net.springkafka.broker.message
+             packages:
+               - net.springkafka.broker.message
+

@@ -4,6 +4,7 @@ public class PromotionMessage {
 
     private String promotionCode;
 
+
     public PromotionMessage() {
     }
 

@@ -18,19 +18,13 @@ public class KafkaConfig {
                 .build();
     }
 
-    @Bean
+ /*   @Bean
     public NewTopic topicOrderReplay(){
         return TopicBuilder.name("t.commodity.order-reply")
                 .partitions(1)
                 .replicas(1)
                 .build();
-    }
+    }*/
 
-    @Bean
-    public NewTopic topicDiscount(){
-        return TopicBuilder.name("t.commodity.discount")
-                .partitions(2)
-                .replicas(1)
-                .build();
-    }
+
 }
