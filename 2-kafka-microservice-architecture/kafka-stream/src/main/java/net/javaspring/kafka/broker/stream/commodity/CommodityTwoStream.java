@@ -15,6 +15,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
 import org.springframework.kafka.support.serializer.JsonSerde;
 
+import static net.javaspring.kafka.util.CommodityStreamUtil.*;
+
 @Configuration
 public class CommodityTwoStream {
 
@@ -26,27 +28,42 @@ public class CommodityTwoStream {
         var orderPatternSerde = new JsonSerde<>(OrderPatternMessage.class);
         var orderRewardSerde = new JsonSerde<>(OrderRewardMessage.class);
 
-        ((JsonDeserializer) orderSerde.deserializer()).setUseTypeHeaders(false);
-        ((JsonDeserializer) orderPatternSerde.deserializer()).setUseTypeHeaders(false);
-        ((JsonDeserializer) orderRewardSerde.deserializer()).setUseTypeHeaders(false);
+        orderSerde.deserializer().setUseTypeHeaders(false);
+        orderPatternSerde.deserializer().setUseTypeHeaders(false);
+        orderRewardSerde.deserializer().setUseTypeHeaders(false);
 
         // source stream to order
         KStream<String, OrderMessage> maskOrderStream = builder.stream("t.commodity.order",
                 Consumed.with(stringSerde, orderSerde)).mapValues(CommodityStreamUtil::maskCreditCard);
 
         // 1st sink stream to pattern
-        // summarize order item (total = price * quantity)
-        KStream<String, OrderPatternMessage> patternStream = maskOrderStream.mapValues(CommodityStreamUtil::mapToOrderPattern);
-        patternStream.to("t.commodity.pattern-two", Produced.with(stringSerde, orderPatternSerde));
+        // summarize order item (total = price * quantity) and split by plastic or notPlastic
+        //@SuppressWarnings("unchecked")
+        @Deprecated
+        KStream<String, OrderPatternMessage>[] patternStream = maskOrderStream
+                .mapValues(CommodityStreamUtil::mapToOrderPattern)
+                .branch(isPlastic(), (k, v) -> true);
+
+        int plasticIndex = 0;
+        int notPlasticIndex = 1;
+
+        patternStream[plasticIndex].to("t.commodity.pattern-two-plastic",
+                Produced.with(stringSerde, orderPatternSerde));
+        patternStream[notPlasticIndex].to("t.commodity..pattern-two-notplastic",
+                Produced.with(stringSerde, orderPatternSerde));
 
         // 2nd sink stream to reward
-        // filter only "large" quantity
+        // filter only "large" quantity and not cheap
         KStream<String, OrderRewardMessage> rewardStream = maskOrderStream
-                .filter(CommodityStreamUtil.isLargeQuantity()).mapValues(CommodityStreamUtil::mapToOrderReward);
+                .filter(CommodityStreamUtil.isLargeQuantity())
+                .filterNot(isCheap())
+                .mapValues(CommodityStreamUtil::mapToOrderReward);
         rewardStream.to("t.commodity.reward-two", Produced.with(stringSerde, orderRewardSerde));
 
         // 3rd sink stream to storage
-        // no transformation
+        // generate base64 key and reply it
+        KStream<String, OrderMessage> storageStream = maskOrderStream
+                .selectKey(generateStorageKey());
         maskOrderStream.to("t.commodity.storage-two", Produced.with(stringSerde, orderSerde));
 
         return maskOrderStream;
