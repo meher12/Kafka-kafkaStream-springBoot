@@ -17,7 +17,7 @@ import org.springframework.kafka.support.serializer.JsonSerde;
 
 import static net.javaspring.kafka.util.CommodityStreamUtil.*;
 
-@Configuration
+//@Configuration
 public class CommodityThreeStream {
 
     @Bean
