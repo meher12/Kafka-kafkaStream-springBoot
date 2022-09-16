@@ -43,5 +43,6 @@
 
 ### 4. Kafka Stream Commodity:
 1. First step masked creditCardNumber then send the object order to t.commodity.order-masked topic
+2. Sink Processors
   
 

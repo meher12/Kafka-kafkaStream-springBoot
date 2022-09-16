@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.support.serializer.JsonSerde;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
 
-@Configuration
+//@Configuration
 public class PromotionUppercaseJsonSerdeStream {
 
     //Topology builder

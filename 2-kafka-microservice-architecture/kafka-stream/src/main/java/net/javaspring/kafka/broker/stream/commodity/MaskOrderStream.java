@@ -14,14 +14,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
 import org.springframework.kafka.support.serializer.JsonSerde;
 
-@Configuration
+//@Configuration
 public class MaskOrderStream {
 
     @Bean
     public KStream<String, OrderMessage> kstreamCommodityTrading(StreamsBuilder builder){
         var stringSerde = Serdes.String();
         var orderSerde = new JsonSerde<>(OrderMessage.class);
-
         ((JsonDeserializer) orderSerde.deserializer()).setUseTypeHeaders(false);
 
         KStream<String, OrderMessage> maskOrderStream = builder.stream("t.commodity.order",
