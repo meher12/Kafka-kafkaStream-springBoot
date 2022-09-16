@@ -21,9 +21,12 @@ public class PromotionUppercaseJsonSerdeStream {
         var stringSerde = Serdes.String(); // as key
         var jsonSerde = new JsonSerde<>(PromotionMessage.class); // as value
 
-
+        // because i create the serde by myself (new JsonSerde<>(PromotionMessage.class))
+        // The property is ignored when i create my own serde
+        //I'm responsible for configuring it (serde).
         //to tell the deserializer to ignore the type information in headers and use the provided fallback type
-       ((JsonDeserializer) jsonSerde.deserializer()).setUseTypeHeaders(false);
+        // To correct this error net.javaspring.kafka.broker.message.PromotionMessage
+        ((JsonDeserializer) jsonSerde.deserializer()).setUseTypeHeaders(false);
 
         KStream<String, PromotionMessage> sourceStream = builder.stream("t.commodity.promotion",
                 Consumed.with(stringSerde, jsonSerde));

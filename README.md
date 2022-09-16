@@ -40,5 +40,8 @@
 2. Use Serdes.String()
 3. Using Json Serde
 4. Use Custom Json Serde
+
+### 4. Kafka Stream Commodity:
+1. First step masked creditCardNumber then send the object order to t.commodity.order-masked topic
   
 
