@@ -12,13 +12,12 @@ import org.apache.kafka.streams.kstream.KStream;
 import org.apache.kafka.streams.kstream.Produced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.kafka.support.serializer.JsonDeserializer;
 import org.springframework.kafka.support.serializer.JsonSerde;
 
 import static net.javaspring.kafka.util.CommodityStreamUtil.*;
 
-//@Configuration
-public class CommodityTwoStream {
+@Configuration
+public class CommodityThreeStream {
 
     @Bean
     public KStream<String, OrderMessage> kStreamCommodityTrading(StreamsBuilder builder) {
@@ -28,9 +27,9 @@ public class CommodityTwoStream {
         var orderPatternSerde = new JsonSerde<>(OrderPatternMessage.class);
         var orderRewardSerde = new JsonSerde<>(OrderRewardMessage.class);
 
-        orderSerde.deserializer().setUseTypeHeaders(false);
-        orderPatternSerde.deserializer().setUseTypeHeaders(false);
-        orderRewardSerde.deserializer().setUseTypeHeaders(false);
+        orderSerde.deserializer();
+        orderPatternSerde.deserializer();
+        orderRewardSerde.deserializer();
 
         // source stream to order
         KStream<String, OrderMessage> maskOrderStream = builder.stream("t.commodity.order",
