@@ -40,7 +40,7 @@ public class CommodityThreeStream {
         final var branchProducer = Produced.with(stringSerde, orderPatternSerde);
         new KafkaStreamBrancher<String, OrderPatternMessage>()
                 .branch(isPlastic(), kStream -> kStream.to("t.commodity.pattern-three-plastic", branchProducer))
-                .defaultBranch(kStream -> kStream.to("t.commodity..pattern-three-notplastic", branchProducer))
+                .defaultBranch(kStream -> kStream.to("t.commodity.pattern-three-notplastic", branchProducer))
                 .onTopOf(maskOrderStream.mapValues(CommodityStreamUtil::mapToOrderPattern));
 // 2nd sink stream to reward
         // filter only "large" quantity and not cheap

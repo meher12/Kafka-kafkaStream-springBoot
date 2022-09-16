@@ -167,6 +167,35 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Create Plastic & notPlastic Order",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"orderLocation\": \"{{$randomCountry}}\",\n    \"creditCardNumber\": \"{{$randomBankAccount}}{{$randomBankAccount}}\",\n     \"orderItems\": [\n         {\n           \"nameRq\": \"Cotton Dog\",\n           \"priceRq\": 80,\n           \"quantityRq\": 200\n         },\n          {\n           \"nameRq\": \"Plastic Cat\",\n           \"priceRq\": 400,\n           \"quantityRq\": 250\n         },\n          {\n           \"nameRq\": \"Wooden Horse\",\n           \"priceRq\": 700,\n           \"quantityRq\": 90\n         },\n          {\n           \"nameRq\": \"Steel Pig\",\n           \"priceRq\": 350,\n           \"quantityRq\": 270\n         }\n     ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9002/api/order",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"order"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"variable": [

@@ -22,7 +22,7 @@ kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --rep
 kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --replication-factor 1 --topic t.commodity.storage-three
 
 kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --replication-factor 1 --topic t.commodity.pattern-four-plastic
-kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --replication-factor 1 --topic t.commodity..pattern-four-notplastic
+kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --replication-factor 1 --topic t.commodity.pattern-four-notplastic
 kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --replication-factor 1 --topic t.commodity.reward-four
 kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --replication-factor 1 --topic t.commodity.storage-four
 
@@ -94,11 +94,16 @@ kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.
 kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.storage-one --property key.separator=" :Storage: "  --property print.key=true --property print.value=true
 
 *             ********************************************* Kafka Stream CommodityTwoStream ********************************
-
 kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.pattern-two-plastic --property key.separator=" :Pattern Plastic: "  --property print.key=true --property print.value=true
 kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity..pattern-two-notplastic --property key.separator=" :Pattern notPlastic: "  --property print.key=true --property print.value=true
 kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.reward-two --property key.separator=" :Reward: "  --property print.key=true --property print.value=true
 kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.storage-two --property key.separator=" :Storage: "  --property print.key=true --property print.value=true
+
+*             ********************************************* Kafka Stream CommodityFourStream ********************************
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.pattern-four-plastic --property key.separator=" :Pattern Plastic: "  --property print.key=true --property print.value=true
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.pattern-four-notplastic --property key.separator=" :Pattern notPlastic: "  --property print.key=true --property print.value=true
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.reward-four --property key.separator=" :Reward: "  --property print.key=true --property print.value=true
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.storage-four --property key.separator=" :Storage: "  --property print.key=true --property print.value=true
 
 
 
