@@ -47,6 +47,7 @@
 3. Additional stream operations in CommodityTwoStream (branch, filterNot, selectKey)
 4. Branching Alternative in CommodityThreeStream (KafkaStreamBrancher)
 5. Reward Each Location: To change original key by location value
+6. Calling API or Other Process (Something Suspicious: Fraud processing)
 
   
 

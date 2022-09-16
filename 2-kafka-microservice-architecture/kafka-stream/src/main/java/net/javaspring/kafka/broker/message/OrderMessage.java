@@ -89,4 +89,17 @@ public class OrderMessage {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+
+    @Override
+    public String toString() {
+        return "OrderMessage{" +
+                "creditCardNumber='" + creditCardNumber + '\'' +
+                ", itemName='" + itemName + '\'' +
+                ", orderDateTime=" + orderDateTime +
+                ", orderLocation='" + orderLocation + '\'' +
+                ", orderNumber='" + orderNumber + '\'' +
+                ", price=" + price +
+                ", quantity=" + quantity +
+                '}';
+    }
 }

@@ -1,11 +1,13 @@
 package net.javaspring.kafka.broker.stream.commodity;
 
 
+import lombok.extern.slf4j.Slf4j;
 import net.javaspring.kafka.broker.message.OrderMessage;
 import net.javaspring.kafka.broker.message.OrderPatternMessage;
 import net.javaspring.kafka.broker.message.OrderRewardMessage;
 import net.javaspring.kafka.util.CommodityStreamUtil;
 import org.apache.kafka.common.serialization.Serdes;
+import org.apache.kafka.streams.KeyValue;
 import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.kstream.Consumed;
 import org.apache.kafka.streams.kstream.KStream;
@@ -17,8 +19,9 @@ import org.springframework.kafka.support.serializer.JsonSerde;
 
 import static net.javaspring.kafka.util.CommodityStreamUtil.*;
 
-//@Configuration
-public class CommodityFourStream {
+@Configuration
+@Slf4j
+public class CommoditySixStream {
 
     @Bean
     public KStream<String, OrderMessage> kStreamCommodityTrading(StreamsBuilder builder) {
@@ -39,8 +42,8 @@ public class CommodityFourStream {
         // 1st sink stream to pattern
         final var branchProducer = Produced.with(stringSerde, orderPatternSerde);
         new KafkaStreamBrancher<String, OrderPatternMessage>()
-                .branch(isPlastic(), kStream -> kStream.to("t.commodity.pattern-four-plastic", branchProducer))
-                .defaultBranch(kStream -> kStream.to("t.commodity.pattern-four-notplastic", branchProducer))
+                .branch(isPlastic(), kStream -> kStream.to("t.commodity.pattern-six-plastic", branchProducer))
+                .defaultBranch(kStream -> kStream.to("t.commodity.pattern-six-notplastic", branchProducer))
                 .onTopOf(maskOrderStream.mapValues(CommodityStreamUtil::mapToOrderPattern));
         // 2nd sink stream to reward
         // filter only "large" quantity and not cheap
@@ -48,15 +51,26 @@ public class CommodityFourStream {
                 .filter(CommodityStreamUtil.isLargeQuantity())
                 .filterNot(isCheap())
                 .map(CommodityStreamUtil.mapToOrderRewardChangeKey());
-        rewardStream.to("t.commodity.reward-four", Produced.with(stringSerde, orderRewardSerde));
+        rewardStream.to("t.commodity.reward-six", Produced.with(stringSerde, orderRewardSerde));
 
         // 3rd sink stream to storage
         // generate base64 key and reply it
         KStream<String, OrderMessage> storageStream = maskOrderStream
                 .selectKey(generateStorageKey());
-        maskOrderStream.to("t.commodity.storage-four", Produced.with(stringSerde, orderSerde));
+        maskOrderStream.to("t.commodity.storage-six", Produced.with(stringSerde, orderSerde));
+
+        //4th stream for fraud
+        KStream<String, OrderMessage> fraudStream =  maskOrderStream.filter((k, v) -> v.getOrderLocation().toUpperCase()
+                .startsWith("C")).peek((k, v) -> this.reportFraud(v));
+        fraudStream.map((k,v) -> KeyValue.pair(v.getOrderLocation().toUpperCase()
+                .charAt(0) + "***", (v.getPrice() * v.getQuantity()))).to("t.commodity.fraud-six",
+                Produced.with(stringSerde, Serdes.Integer()));
 
         return maskOrderStream;
 
+    }
+
+    private void reportFraud(OrderMessage v) {
+        log.info("Reporting fraud :::=>  {}", v);
     }
 }
