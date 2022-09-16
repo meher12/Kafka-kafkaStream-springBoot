@@ -12,6 +12,7 @@ import org.apache.kafka.streams.kstream.KStream;
 import org.apache.kafka.streams.kstream.Produced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.kafka.support.KafkaStreamBrancher;
 import org.springframework.kafka.support.serializer.JsonSerde;
 
 import static net.javaspring.kafka.util.CommodityStreamUtil.*;
@@ -27,43 +28,33 @@ public class CommodityThreeStream {
         var orderPatternSerde = new JsonSerde<>(OrderPatternMessage.class);
         var orderRewardSerde = new JsonSerde<>(OrderRewardMessage.class);
 
-        orderSerde.deserializer();
-        orderPatternSerde.deserializer();
-        orderRewardSerde.deserializer();
+        orderSerde.deserializer().setUseTypeHeaders(false);
+        orderPatternSerde.deserializer().setUseTypeHeaders(false);
+        orderRewardSerde.deserializer().setUseTypeHeaders(false);
 
         // source stream to order
         KStream<String, OrderMessage> maskOrderStream = builder.stream("t.commodity.order",
                 Consumed.with(stringSerde, orderSerde)).mapValues(CommodityStreamUtil::maskCreditCard);
 
         // 1st sink stream to pattern
-        // summarize order item (total = price * quantity) and split by plastic or notPlastic
-        //@SuppressWarnings("unchecked")
-        @Deprecated
-        KStream<String, OrderPatternMessage>[] patternStream = maskOrderStream
-                .mapValues(CommodityStreamUtil::mapToOrderPattern)
-                .branch(isPlastic(), (k, v) -> true);
-
-        int plasticIndex = 0;
-        int notPlasticIndex = 1;
-
-        patternStream[plasticIndex].to("t.commodity.pattern-two-plastic",
-                Produced.with(stringSerde, orderPatternSerde));
-        patternStream[notPlasticIndex].to("t.commodity..pattern-two-notplastic",
-                Produced.with(stringSerde, orderPatternSerde));
-
-        // 2nd sink stream to reward
+        final var branchProducer = Produced.with(stringSerde, orderPatternSerde);
+        new KafkaStreamBrancher<String, OrderPatternMessage>()
+                .branch(isPlastic(), kStream -> kStream.to("t.commodity.pattern-three-plastic", branchProducer))
+                .defaultBranch(kStream -> kStream.to("t.commodity..pattern-three-notplastic", branchProducer))
+                .onTopOf(maskOrderStream.mapValues(CommodityStreamUtil::mapToOrderPattern));
+// 2nd sink stream to reward
         // filter only "large" quantity and not cheap
         KStream<String, OrderRewardMessage> rewardStream = maskOrderStream
                 .filter(CommodityStreamUtil.isLargeQuantity())
                 .filterNot(isCheap())
                 .mapValues(CommodityStreamUtil::mapToOrderReward);
-        rewardStream.to("t.commodity.reward-two", Produced.with(stringSerde, orderRewardSerde));
+        rewardStream.to("t.commodity.reward-three", Produced.with(stringSerde, orderRewardSerde));
 
         // 3rd sink stream to storage
         // generate base64 key and reply it
         KStream<String, OrderMessage> storageStream = maskOrderStream
                 .selectKey(generateStorageKey());
-        maskOrderStream.to("t.commodity.storage-two", Produced.with(stringSerde, orderSerde));
+        maskOrderStream.to("t.commodity.storage-three", Produced.with(stringSerde, orderSerde));
 
         return maskOrderStream;
 

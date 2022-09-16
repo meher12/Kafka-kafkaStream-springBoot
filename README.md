@@ -45,6 +45,7 @@
 1. First step masked creditCardNumber then send the object order to t.commodity.order-masked topic
 2. Sink Processors in CommodityOneStream (mapValues, filter, )
 3. Additional stream operations in CommodityTwoStream (branch, filterNot, selectKey)
+4. Branching Alternative in CommodityThreeStream (KafkaStreamBrancher)
 
   
 
