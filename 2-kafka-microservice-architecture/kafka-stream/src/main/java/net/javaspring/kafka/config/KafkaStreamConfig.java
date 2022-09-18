@@ -23,6 +23,9 @@ public class KafkaStreamConfig {
         props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
         props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
         props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
+
+        //Delay on table
+        props.put(StreamsConfig.COMMIT_INTERVAL_MS_CONFIG, "3000");
         // Kafka streams deserialization error handling:
         // Config to log the error & continue processing
         props.put("default.deserialization.exception.handler", LogAndContinueExceptionHandler.class);
