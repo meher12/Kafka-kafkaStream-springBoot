@@ -25,7 +25,7 @@ public class FeedbackOneStream {
         var feedbackSerde = new JsonSerde<>(FeedbackMessage.class);
         feedbackSerde.deserializer().setUseTypeHeaders(false);
 
-        var goodFeedbackStream = builder.stream("t.commodity.feedback-one",
+        var goodFeedbackStream = builder.stream("t.commodity.feedback",
                 Consumed.with(stringSerde, feedbackSerde))
                 .flatMapValues(mapperGoodWords());
         goodFeedbackStream.to("t.commodity.feedback-one-good");

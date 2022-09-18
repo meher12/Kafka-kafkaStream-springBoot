@@ -20,7 +20,7 @@ public class FeedbackProducer {
 
     public void publish(FeedbackMessage message){
 
-        kafkaTemplate.send("t.commodity.feedback-one", message.getBranchLocation(), message)
+        kafkaTemplate.send("t.commodity.feedback", message.getBranchLocation(), message)
                 .addCallback(new ListenableFutureCallback<SendResult<String, FeedbackMessage>>() {
                     @Override
                     public void onFailure(Throwable ex) {

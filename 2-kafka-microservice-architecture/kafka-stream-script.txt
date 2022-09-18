@@ -117,4 +117,7 @@ kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.
 *             ********************************************* Kafka Stream FeedbackTwoStream ********************************
 kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.feedback-two-good --property print.key=true --property key.separator=" : " --property print.value=true
 
+*             ********************************************* Kafka Stream FeedbackThreeStream ********************************
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.feedback-three-good  --property print.key=true
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.feedback-three-bad  --property print.key=true
 

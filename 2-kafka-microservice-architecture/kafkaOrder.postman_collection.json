@@ -226,11 +226,55 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Create Good Feedback",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.collectionVariables.set (\"randomInt\", _.random (1,5));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"branchLocation\": \"{{$randomCountry}}\",\n    \"rating\" : \"{{randomInt}}\",\n    \"feedback\": \"I'm very happy with the staff. Helpful and alwaus smile. Please keep make me feels good \"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9002/api/feedback",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"feedback"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"variable": [
 		{
 			"key": "randomNum",
+			"value": ""
+		},
+		{
+			"key": "randomInt",
 			"value": ""
 		}
 	]

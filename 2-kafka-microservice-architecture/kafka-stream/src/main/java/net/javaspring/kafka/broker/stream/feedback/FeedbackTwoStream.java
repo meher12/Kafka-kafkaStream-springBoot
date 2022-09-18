@@ -17,7 +17,7 @@ import java.util.Set;
 
 import static java.util.stream.Collectors.toList;
 
-@Configuration
+//@Configuration
 public class FeedbackTwoStream {
 
     private static final Set<String> GOOD_WORDS = Set.of("happy", "good", "helpful");
@@ -28,15 +28,14 @@ public class FeedbackTwoStream {
         var feedbackSerde = new JsonSerde<>(FeedbackMessage.class);
         feedbackSerde.deserializer().setUseTypeHeaders(false);
 
-        var goodFeedbackStream = builder.stream("t.commodity.feedback-one",
+        var goodFeedbackStream = builder.stream("t.commodity.feedback",
                 Consumed.with(stringSerde, feedbackSerde))
                 // Add branchLocation as the key and value "good word"
                 .flatMap((k, v) ->  Arrays.asList(v.getFeedback()
                                 .replaceAll("^a-zA-Z", "")
                                 .toLowerCase().split("\\s+"))
                         .stream().filter(word -> GOOD_WORDS.contains(word))
-                        .distinct()
-                        .map(goodWord -> KeyValue.pair(v.getBranchLocation(), goodWord))
+                        .distinct().map(goodWord -> KeyValue.pair(v.getBranchLocation(), goodWord))
                         .collect(toList()));
         goodFeedbackStream.to("t.commodity.feedback-two-good");
 
