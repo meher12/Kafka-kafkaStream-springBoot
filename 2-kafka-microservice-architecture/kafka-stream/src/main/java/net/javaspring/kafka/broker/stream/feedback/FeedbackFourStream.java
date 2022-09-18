@@ -4,7 +4,10 @@ import net.javaspring.kafka.broker.message.FeedbackMessage;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.streams.KeyValue;
 import org.apache.kafka.streams.StreamsBuilder;
-import org.apache.kafka.streams.kstream.*;
+import org.apache.kafka.streams.kstream.Consumed;
+import org.apache.kafka.streams.kstream.KStream;
+import org.apache.kafka.streams.kstream.KeyValueMapper;
+import org.apache.kafka.streams.kstream.Predicate;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.support.serializer.JsonSerde;
@@ -14,8 +17,8 @@ import java.util.Set;
 
 import static java.util.stream.Collectors.toList;
 
-//@Configuration
-public class FeedbackThreeStream {
+@Configuration
+public class FeedbackFourStream {
 
     private static final Set<String> GOOD_WORDS = Set.of("happy", "good", "helpful");
     private static final Set<String> BAD_WORDS = Set.of("angry", "sad", "bad");
@@ -31,8 +34,12 @@ public class FeedbackThreeStream {
 
         var feedbackStreams = sourceStream.flatMap(splitWords()).branch(isGoodWord(), isBadWord());
 
-        feedbackStreams[0].to("t.commodity.feedback-three-good");
-        feedbackStreams[1].to("t.commodity.feedback-three-bad");
+        feedbackStreams[0].to("t.commodity.feedback-four-good");
+        feedbackStreams[0].groupByKey().count().toStream().to("t.commodity.feedback-four-good-count");
+
+        feedbackStreams[1].to("t.commodity.feedback-four-bad");
+        feedbackStreams[1].groupByKey().count().toStream().to("t.commodity.feedback-four-bad-count");
+
 
         return sourceStream;
     }

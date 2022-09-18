@@ -121,3 +121,8 @@ kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.
 kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.feedback-three-good  --property print.key=true
 kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.feedback-three-bad  --property print.key=true
 
+*             ********************************************* Kafka Stream FeedbackFourStream ********************************
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.feedback-four-good  --property print.key=true
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.feedback-four-bad  --property print.key=true
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.feedback-four-good-count  --property print.key=true --property value.deserializer=org.apache.kafka.common.serialization.LongDeserializer
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.feedback-four-bad-count  --property print.key=true --property value.deserializer=org.apache.kafka.common.serialization.LongDeserializer

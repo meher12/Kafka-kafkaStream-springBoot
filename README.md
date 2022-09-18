@@ -53,3 +53,4 @@
 1. Add the good feedback to "t.commodity.feedback-one-good" And find the good word in text in FeedbackOneStream "mapperGoodWords()"
 2. Add branchLocation as the key and value "good word" (Who Owns This Feedback)
 3. Stream to analyze feedback(good or bad) from t.commodity.feedback topic to t.commodity.feedback-good-word or t.commodity.feedback-bad-word
+4. Group using KTable for count the good word and count the bad word
