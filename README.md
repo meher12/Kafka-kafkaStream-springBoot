@@ -50,5 +50,5 @@
 6. Calling API or Other Process (Something Suspicious: Fraud processing)
 
 ### 5. Kafka Stream Feedback:  
-1. add the good feedback to "t.commodity.feedback-one-good" in FeedbackOneStream
-
+1. Add the good feedback to "t.commodity.feedback-one-good" And find the good word in text in FeedbackOneStream "mapperGoodWords()"
+2. Add branchLocation as the key and value "good word" 

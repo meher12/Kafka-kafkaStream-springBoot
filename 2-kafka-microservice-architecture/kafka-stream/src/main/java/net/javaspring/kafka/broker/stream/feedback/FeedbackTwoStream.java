@@ -2,6 +2,7 @@ package net.javaspring.kafka.broker.stream.feedback;
 
 import net.javaspring.kafka.broker.message.FeedbackMessage;
 import org.apache.kafka.common.serialization.Serdes;
+import org.apache.kafka.streams.KeyValue;
 import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.kstream.Consumed;
 import org.apache.kafka.streams.kstream.KStream;
@@ -12,10 +13,12 @@ import org.springframework.kafka.support.serializer.JsonSerde;
 
 import java.util.Arrays;
 import java.util.Set;
-import java.util.stream.Collectors;
 
-//@Configuration
-public class FeedbackOneStream {
+
+import static java.util.stream.Collectors.toList;
+
+@Configuration
+public class FeedbackTwoStream {
 
     private static final Set<String> GOOD_WORDS = Set.of("happy", "good", "helpful");
 
@@ -27,18 +30,18 @@ public class FeedbackOneStream {
 
         var goodFeedbackStream = builder.stream("t.commodity.feedback-one",
                 Consumed.with(stringSerde, feedbackSerde))
-                .flatMapValues(mapperGoodWords());
-        goodFeedbackStream.to("t.commodity.feedback-one-good");
+                // Add branchLocation as the key and value "good word"
+                .flatMap((k, v) ->  Arrays.asList(v.getFeedback()
+                                .replaceAll("^a-zA-Z", "")
+                                .toLowerCase().split("\\s+"))
+                        .stream().filter(word -> GOOD_WORDS.contains(word))
+                        .distinct()
+                        .map(goodWord -> KeyValue.pair(v.getBranchLocation(), goodWord))
+                        .collect(toList()));
+        goodFeedbackStream.to("t.commodity.feedback-two-good");
 
         return goodFeedbackStream;
     }
 
-    // find the good word in text
-    private ValueMapper<FeedbackMessage, Iterable<String>> mapperGoodWords() {
-        return feedbackMessage -> Arrays.asList(feedbackMessage.getFeedback()
-                .replaceAll("^a-zA-Z", "")
-                .toLowerCase().split("\\s+"))
-                .stream().filter(word -> GOOD_WORDS.contains(word))
-                .distinct().collect(Collectors.toList()); // whitespace : "\\s+"
-    }
+
 }
