@@ -37,6 +37,7 @@ kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --rep
 kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --replication-factor 1 --topic t.commodity.storage-six
 kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --replication-factor 1 --topic t.commodity.fraud-six
 
+kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --replication-factor 1 --topic t.commodity.feedback
 kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --replication-factor 1 --topic t.commodity.feedback-one-good
 kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --replication-factor 1 --topic t.commodity.feedback-one-bad
 kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --replication-factor 1 --topic t.commodity.feedback-one-good-count
@@ -109,6 +110,7 @@ kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.
 *             ********************************************* Kafka Stream CommoditySixStream ********************************
 kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.fraud-six --property key.separator=" :Reward: "  --property print.key=true --property value.deserializer=org.apache.kafka.common.serialization.IntegerDeserializer
 
-
-
+*             ********************************************* Kafka Stream FeedbackOneStream ********************************
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.feedback-one --property key.separator=":Feedback One: "  --property print.key=true
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.feedback-one-good --property key.separator=":Feedback One Good: "  --property print.key=true
 

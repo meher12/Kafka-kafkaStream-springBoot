@@ -20,9 +20,9 @@
     * Create broker message and promotion
     * Handle kafka publish result (addCallback()/get()) for OrderProducer
     * Create Order, Promotion API (controller, service, request and response, action)
-    *  * create promotion topic:
+    * Create promotion topic:
          kafka-topics.sh --bootstrap-server localhost:9092 --create --topic t.commodity.promotion --partitions 1 --replication-factor 1
-    * kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.promotion
+         kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.promotion
     * Test API with postman json file collection
     * Add header to order producer, pattern and reward consumer to read the headers and body message (by send the order from postman for get a surprise bonus)
    
@@ -49,5 +49,6 @@
 5. Reward Each Location: To change original key by location value
 6. Calling API or Other Process (Something Suspicious: Fraud processing)
 
-  
+### 5. Kafka Stream Feedback:  
+1. add the good feedback to "t.commodity.feedback-one-good" in FeedbackOneStream
 

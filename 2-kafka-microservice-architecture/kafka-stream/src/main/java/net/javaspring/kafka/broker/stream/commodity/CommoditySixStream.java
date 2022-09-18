@@ -19,7 +19,7 @@ import org.springframework.kafka.support.serializer.JsonSerde;
 
 import static net.javaspring.kafka.util.CommodityStreamUtil.*;
 
-@Configuration
+//@Configuration
 @Slf4j
 public class CommoditySixStream {
 
