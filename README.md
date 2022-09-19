@@ -55,3 +55,4 @@
 3. Stream to analyze feedback(good or bad) from t.commodity.feedback topic to t.commodity.feedback-good-word or t.commodity.feedback-bad-word
 4. Group using KTable for count the good word and count the bad word
 5. Delay on table
+6. Send to topic and continue (through)
