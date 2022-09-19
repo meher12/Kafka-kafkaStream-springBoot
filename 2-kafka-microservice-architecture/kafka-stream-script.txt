@@ -132,3 +132,10 @@ kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.
 kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.feedback-five-bad  --property print.key=true
 kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.feedback-five-good-count  --property print.key=true --property value.deserializer=org.apache.kafka.common.serialization.LongDeserializer
 kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.feedback-five-bad-count  --property print.key=true --property value.deserializer=org.apache.kafka.common.serialization.LongDeserializer
+
+
+*             ********************************************* Kafka Stream FeedbackSixStream ********************************
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.feedback-six-good-count --property print.key=true --property value.deserializer=org.apache.kafka.common.serialization.LongDeserializer
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.feedback-six-bad-count  --property print.key=true --property value.deserializer=org.apache.kafka.common.serialization.LongDeserializer
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.feedback-six-good-count-word  --property print.key=true --property value.deserializer=org.apache.kafka.common.serialization.LongDeserializer
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.feedback-six-bad-count-word  --property print.key=true --property value.deserializer=org.apache.kafka.common.serialization.LongDeserializer

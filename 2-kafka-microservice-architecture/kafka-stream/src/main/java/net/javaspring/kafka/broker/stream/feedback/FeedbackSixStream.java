@@ -17,8 +17,8 @@ import java.util.Set;
 
 import static java.util.stream.Collectors.toList;
 
-//@Configuration
-public class FeedbackFiveStream {
+@Configuration
+public class FeedbackSixStream {
 
     private static final Set<String> GOOD_WORDS = Set.of("happy", "good", "helpful");
     private static final Set<String> BAD_WORDS = Set.of("angry", "sad", "bad");
@@ -34,11 +34,16 @@ public class FeedbackFiveStream {
 
         var feedbackStreams = sourceStream.flatMap(splitWords()).branch(isGoodWord(), isBadWord());
 
-        feedbackStreams[0].through("t.commodity.feedback-five-good")
-                .groupByKey().count().toStream().to("t.commodity.feedback-five-good-count");
+        feedbackStreams[0].through("t.commodity.feedback-six-good")
+                .groupByKey().count().toStream().to("t.commodity.feedback-six-good-count");
 
-        feedbackStreams[1].through("t.commodity.feedback-five-bad")
-                .groupByKey().count().toStream().to("t.commodity.feedback-five-bad-count");
+        feedbackStreams[1].through("t.commodity.feedback-six-bad")
+                .groupByKey().count().toStream().to("t.commodity.feedback-six-bad-count");
+
+        // additional requirement (use value as key mapper)
+        feedbackStreams[0].groupBy((key, value) -> value).count().toStream().to("t.commodity.feedback-six-good-count-word");
+
+        feedbackStreams[1].groupBy((key, value) -> value).count().toStream().to("t.commodity.feedback-six-bad-count-word");
 
 
         return sourceStream;
