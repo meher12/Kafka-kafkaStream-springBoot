@@ -152,3 +152,6 @@ kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.
 
 *             ********************************************* Kafka Stream FeedbackRatingOneStream ********************************
 kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.feedback.rating-one --property print.key=true
+
+*             ********************************************* Kafka Stream FeedbackRatingTwoStream ********************************
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.feedback.rating-two --property print.key=true

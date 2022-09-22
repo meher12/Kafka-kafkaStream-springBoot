@@ -71,7 +71,9 @@
    state stores to compose the processor topology that represents a customized processing logic.](https://docs.confluent.io/platform/current/streams/developer-guide/processor-api.html#kstreams-processor-api)
 
 ### 3.7. Feedback Rating Stream:
-1. Average Rating (Feedback rating dashboard by country)
+1. Average Rating (Feedback rating dashboard by country):
    * AVG = sum(ratings)/ count(ratings)
    * Need to know all ratings (use state store)
    * Use processor API to interact with state store
+2. Detailed rating by Branch (location):
+   * run postman random feedback to test
