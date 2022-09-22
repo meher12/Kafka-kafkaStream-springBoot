@@ -144,3 +144,8 @@ kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.
 kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.flashsale.vote --property print.key=true
 kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.flashsale.vote-user-item  --property print.key=true --property value.deserializer=org.apache.kafka.common.serialization.StringDeserializer
 kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.flashsale.vote-one-result  --property print.key=true --property value.deserializer=org.apache.kafka.common.serialization.LongDeserializer
+
+*             ********************************************* Kafka Stream FlashSaleVoteTwoStream ********************************
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.flashsale.vote --property print.key=true
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.flashsale.vote-user-item  --property print.key=true --property print.key=true --property value.deserializer=org.apache.kafka.common.serialization.StringDeserializer
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.flashsale.vote-two-result  --property print.key=true --property value.deserializer=org.apache.kafka.common.serialization.LongDeserializer

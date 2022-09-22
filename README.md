@@ -59,3 +59,9 @@
 7. Overall good or bad : additional requirement (use value as key mapper)
 
 ### 3.6. Flash Sale Vote Stream:
+1. Use kTable for save the latest itemName choosing by customer in flashsaleVote
+2. Statefull in kafka stream
+3. transformValues and Timestamp (is a mechanism to associate a date and time to an event):
+   * Use LocalDateTimeUtil class to convert LocalDateTime to epoch time.
+   * We use transformValues to make an epoch (startTime and endTime) to vote 
+   * groupedItem by itemValue in "t.commodity.flashsale.vote-two-result"
