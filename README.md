@@ -64,7 +64,7 @@
 3. transformValues and Timestamp (is a mechanism to associate a date and time to an event):
    * Use LocalDateTimeUtil class to convert LocalDateTime to epoch time.
    * We use transformValues to make an epoch (startTime and endTime) to vote 
-   * groupedItem by itemValue in "t.commodity.flashsale.vote-two-result" \n
+   * groupedItem by itemValue in "t.commodity.flashsale.vote-two-result" <br/>
 :: ==>> :: [The Processor API allows developers to define and connect custom processors and to interact with 
    state stores. With the Processor API, you can define arbitrary stream processors that 
    process one received record at a time, and connect these processors with their associated
