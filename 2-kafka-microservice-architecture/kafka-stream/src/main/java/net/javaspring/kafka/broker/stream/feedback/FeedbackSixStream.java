@@ -17,7 +17,7 @@ import java.util.Set;
 
 import static java.util.stream.Collectors.toList;
 
-@Configuration
+//@Configuration
 public class FeedbackSixStream {
 
     private static final Set<String> GOOD_WORDS = Set.of("happy", "good", "helpful");

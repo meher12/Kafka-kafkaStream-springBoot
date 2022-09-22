@@ -41,7 +41,7 @@
 3. Using Json Serde
 4. Use Custom Json Serde
 
-### 4. Kafka Stream Commodity:
+### 3.1. Kafka Stream Commodity:
 1. First step masked creditCardNumber then send the object order to t.commodity.order-masked topic
 2. Sink Processors in CommodityOneStream (mapValues, filter, )
 3. Additional stream operations in CommodityTwoStream (branch, filterNot, selectKey)
@@ -49,7 +49,7 @@
 5. Reward Each Location: To change original key by location value
 6. Calling API or Other Process (Something Suspicious: Fraud processing)
 
-### 5. Kafka Stream Feedback:  
+### 3.2. Kafka Stream Feedback:  
 1. Add the good feedback to "t.commodity.feedback-one-good" And find the good word in text in FeedbackOneStream "mapperGoodWords()"
 2. Add branchLocation as the key and value "good word" (Who Owns This Feedback)
 3. Stream to analyze feedback(good or bad) from t.commodity.feedback topic to t.commodity.feedback-good-word or t.commodity.feedback-bad-word
@@ -57,3 +57,5 @@
 5. Delay on table
 6. Send to topic and continue (with through)
 7. Overall good or bad : additional requirement (use value as key mapper)
+
+### 3.6. Flash Sale Vote Stream:

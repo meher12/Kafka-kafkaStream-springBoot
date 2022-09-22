@@ -234,7 +234,8 @@
 					"listen": "prerequest",
 					"script": {
 						"exec": [
-							"pm.collectionVariables.set (\"randomInt\", _.random (1,5));"
+							"pm.collectionVariables.set (\"randomInt\", _.random (3,5));",
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -245,7 +246,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"branchLocation\": \"{{$randomCountry}}\",\n    \"rating\" : \"{{randomInt}}\",\n    \"feedback\": \"I'm very happy with the staff. Helpful and alwaus smile. Please keep make me feels good \"\n}",
+					"raw": "{\n    \"branchLocation\": \"{{$randomCountry}}\",\n    \"rating\" : \"{{randomInt}}\",\n    \"feedback\": \"I'm very happy with the staff. Helpful and alwaus smile. Please keep make me feels good\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -266,6 +267,196 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Create Bad Feedback",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.collectionVariables.set (\"randomInt\", _.random (1,2));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"branchLocation\": \"{{$randomCountry}}\",\n    \"rating\" : \"{{randomInt}}\",\n    \"feedback\": \"The staff treats me bad and make me angry . It's realy bad experience!\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9002/api/feedback",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"feedback"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Random Feedback",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.collectionVariables.set (\"randomInt\", _.random (1,5));",
+							"",
+							"var words = [\"happy good\", \"good\", \"helpful happy good\", \"angry\", \"sad angry\", \" sad bad angry\"];",
+							"",
+							"pm.environment.set('words',words);",
+							"",
+							"pm.environment.set(\"randomW\", words[Math.floor(Math.random() * words.length)]);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"branchLocation\": \"{{$randomCountry}}\",\n    \"rating\" : \"{{randomInt}}\",\n    \"feedback\": \"I'm very {{randomW}}\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9002/api/feedback",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"feedback"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Flash sale vote",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"customerId\": \"esla\",\n   \"itemName\": \"cookies\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:9002/api/flashSale/vote",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"flashSale",
+						"vote"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create random Flash sale vote",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"",
+							"var cunsId = [\"anna\", \"olaf\", \"esla\"];",
+							"",
+							"pm.environment.set('randomCustomerId',cunsId);",
+							"",
+							"pm.environment.set(\"randomCustomerId\", cunsId[Math.floor(Math.random() * cunsId.length)]);",
+							"",
+							"// itemName",
+							"var items = [\"Cookies\", \"Cake\"];",
+							"",
+							"pm.environment.set('randomItem',items);",
+							"",
+							"pm.environment.set(\"randomItem\", items[Math.floor(Math.random() * items.length)]);",
+							"",
+							"const jsonBody = {",
+							" \"customerId\": \"{{randomCustomerId}}\",",
+							"\"itemName\": \"{{randomItem}}\"",
+							"}",
+							"",
+							"pm.globals.set('jsonBody', JSON.stringify(jsonBody));",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{{jsonBody}}"
+				},
+				"url": {
+					"raw": "http://localhost:9002/api/flashSale/vote",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"flashSale",
+						"vote"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"variable": [
@@ -275,6 +466,10 @@
 		},
 		{
 			"key": "randomInt",
+			"value": ""
+		},
+		{
+			"key": "randomCustomerId",
 			"value": ""
 		}
 	]
