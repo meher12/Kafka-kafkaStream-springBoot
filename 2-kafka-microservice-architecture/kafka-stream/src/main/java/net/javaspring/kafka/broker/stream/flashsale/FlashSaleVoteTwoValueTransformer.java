@@ -14,7 +14,7 @@ public class FlashSaleVoteTwoValueTransformer implements ValueTransformer<FlashS
     private final long voteStartTime;
     private final long voteEndTime;
 
-    //To access processor API, we can use ProcessorContext class.
+    // to access processor API, we can use ProcessorContext class.
     private ProcessorContext processorContext;
 
     public FlashSaleVoteTwoValueTransformer(LocalDateTime voteStart, LocalDateTime voteEnd) {
