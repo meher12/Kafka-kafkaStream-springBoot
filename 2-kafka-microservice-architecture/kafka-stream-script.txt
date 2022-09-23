@@ -93,6 +93,7 @@ kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --rep
 kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --replication-factor 1 --topic t.commodity.inventory-total-one
 kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --replication-factor 1 --topic t.commodity.inventory-total-two
 kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --replication-factor 1 --topic t.commodity.inventory-total-three
+kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --replication-factor 1 --topic t.commodity.inventory-four
 
 
 *             ********************************************* Kafka Stream CommodityOneStream ********************************
@@ -163,10 +164,15 @@ kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.
 kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.feedback.rating-two --property print.key=true
 
 *             ********************************************* Kafka Stream InventoryOneStream ********************************
-kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.inventory-total-one --property print.key=true --property print.key=true --property value.deserializer=org.apache.kafka.common.serialization.LongDeserializer
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.inventory-total-one --property print.key=true  --property value.deserializer=org.apache.kafka.common.serialization.LongDeserializer
 
 *             ********************************************* Kafka Stream InventoryTwoStream ********************************
-kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.inventory-total-two --property print.key=true --property print.key=true --property value.deserializer=org.apache.kafka.common.serialization.LongDeserializer
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.inventory-total-two --property print.key=true --property value.deserializer=org.apache.kafka.common.serialization.LongDeserializer
 
 *             ********************************************* Kafka Stream InventoryThreeStream ********************************
-kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.inventory-total-three --property print.key=true --property print.key=true --property value.deserializer=org.apache.kafka.common.serialization.LongDeserializer
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.inventory-total-three --property print.key=true --property value.deserializer=org.apache.kafka.common.serialization.LongDeserializer
+
+*             ********************************************* Kafka Stream InventoryFourStream ********************************
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.inventory-four --property print.key=true  --property print.timestamp=true
+
+

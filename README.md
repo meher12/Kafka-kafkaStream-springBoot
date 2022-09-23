@@ -80,5 +80,8 @@
 
 ### 3.8. Inventory Stream:
 1. Summing records by Item and quantity
-2. Subtracting Value: if type = "subtract" remove quantity 
+2. Subtracting Value: if type not "ADD" remove quantity 
     - using Reduce
+3. Timestamp Extractor:
+    convert timestamp to epoch https://www.epochconverter.com/ (You will see that it has same exact time with
+   value on message payload)
