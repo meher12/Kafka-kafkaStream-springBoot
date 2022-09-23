@@ -77,3 +77,6 @@
    * Use processor API to interact with state store
 2. Detailed rating by Branch (location):
    * run postman random feedback to test
+
+### 3.8. Inventory Stream:
+1. Summing records by Item and quantity

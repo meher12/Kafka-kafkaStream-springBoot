@@ -89,6 +89,9 @@ kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --rep
 kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --replication-factor 1 --topic t.commodity.feedback.rating-one
 kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --replication-factor 1 --topic t.commodity.feedback.rating-two
 
+kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --replication-factor 1 --topic t.commodity.inventory
+kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --replication-factor 1 --topic t.commodity.inventory-total-one
+
 *             ********************************************* Kafka Stream CommodityOneStream ********************************
 // the 3 sink
 kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.pattern-one --property key.separator=" :Pattern: "  --property print.key=true --property print.value=true
@@ -155,3 +158,6 @@ kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.
 
 *             ********************************************* Kafka Stream FeedbackRatingTwoStream ********************************
 kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.feedback.rating-two --property print.key=true
+
+*             ********************************************* Kafka Stream InventoryOneStream ********************************
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.inventory-total-one --property print.key=true --property print.key=true --property value.deserializer=org.apache.kafka.common.serialization.LongDeserializer

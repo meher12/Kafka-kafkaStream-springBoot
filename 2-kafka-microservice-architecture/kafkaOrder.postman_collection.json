@@ -378,7 +378,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n   \"customerId\": \"esla\",\n   \"itemName\": \"cookies\"\n}"
+					"raw": "{\n   \"customerId\": \"ali\",\n   \"itemName\": \"coca-cola\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:9002/api/flashSale/vote",
@@ -457,6 +457,80 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Inventory - Add",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"",
+							"pm.environment.set(\"randompastdate\", pm.variables.replaceIn('{{$randomDatePast}}'));",
+							"let pastdate = pm.environment.get(\"randompastdate\");",
+							"",
+							"const moment = require('moment');",
+							"pastdate = moment(pastdate);",
+							"",
+							"//pastdate = moment().subtract(5, 'd');",
+							"pm.environment.set(\"pastdate\", pastdate.format(\"DD-MM-YYYY hh:mm:ss\"));",
+							"",
+							"",
+							"/*",
+							"const moment = require('moment');",
+							"const today = moment();",
+							"var todayDate = today.format('DD-MM-YYYY HH:MM:SS');",
+							"pm.globals.set(\"todayDate\", todayDate);",
+							"",
+							"var tenDaysBack = moment().subtract(10, 'days');",
+							"//console.log(tenDaysBack);",
+							"pm.globals.set(\"tenDaysBack\", tenDaysBack.format('DD-MM-YYYY HH:MM:SS'));",
+							"*/",
+							"",
+							"",
+							"",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"location\": \"Indonesia\",\n    \"item\" : \"apple\",\n    \"quantity\": 3,\n    \"transactionTime\": \"{{pastdate}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9002/api/inventory/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"inventory",
+						"add"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"variable": [
@@ -470,6 +544,10 @@
 		},
 		{
 			"key": "randomCustomerId",
+			"value": ""
+		},
+		{
+			"key": "startTime",
 			"value": ""
 		}
 	]
