@@ -11,8 +11,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.support.serializer.JsonSerde;
 
-//@Configuration
-public class InventoryTwoStream {
+@Configuration
+public class InventoryThreeStream {
 
     @Bean
     public KStream<String, InventoryMessage> kStreamInventory(StreamsBuilder builder) {
@@ -25,21 +25,14 @@ public class InventoryTwoStream {
                 Consumed.with(stringSerde, inventorySerde));
 
         /*
-        Aggregating KGroupedStream is always “adding”  using the adder parameter.
-        We always add aggregated value with new value.
-        So for subtracting inventory, we must convert the quantity on original record into negative value
-        We can use field “type” on the original message.
-        To get remove functionality, what we need to do is adjust the mapValues by using type,
-        *
-          Then we send the result to sink stream. Since aggregate produces KTable, we need to
-          convert it to stream before send.
+         Use reduce
         *
         * */
         inventoryStream.mapValues((key, value) -> value.getType()
                         .equalsIgnoreCase("ADD") ? value.getQuantity() : -1 * value.getQuantity())
                 .groupByKey()
-                .aggregate(() -> 0l, (aggKey, newValue, aggValue) -> aggValue + newValue, Materialized.with(stringSerde, longSerde))
-                .toStream().to("t.commodity.inventory-total-two", Produced.with(stringSerde, longSerde));
+                .reduce(Long::sum, Materialized.with(stringSerde, longSerde))
+                .toStream().to("t.commodity.inventory-total-three", Produced.with(stringSerde, longSerde));
 
         return inventoryStream;
     }

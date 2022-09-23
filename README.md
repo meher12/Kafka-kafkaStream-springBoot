@@ -81,3 +81,4 @@
 ### 3.8. Inventory Stream:
 1. Summing records by Item and quantity
 2. Subtracting Value: if type = "subtract" remove quantity 
+    - using Reduce
