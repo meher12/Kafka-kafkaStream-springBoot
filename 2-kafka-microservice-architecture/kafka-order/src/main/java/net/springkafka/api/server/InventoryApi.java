@@ -15,15 +15,26 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("/api/inventory/add")
+@RequestMapping("/api/inventory")
 public class InventoryApi {
 
     @Autowired
     private InventoryService inventoryService;
 
-    @PostMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.TEXT_PLAIN_VALUE)
+    @PostMapping(value = "/add", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.TEXT_PLAIN_VALUE)
     public ResponseEntity<String> create(@RequestBody InventoryRequest request) {
         inventoryService.createInventory(request);
+
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body("Inventory location: "+request.getLocation()
+                        + "\n Item: " + request.getItem() +
+                        "\n Quantity: " + request.getQuantity() +
+                        "\n TransactionTime: " + request.getTransactionTime());
+    }
+
+    @PostMapping(value = "/subtract", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.TEXT_PLAIN_VALUE)
+    public ResponseEntity<String> subtract(@RequestBody InventoryRequest request) {
+        inventoryService.subtractingInventory(request);
 
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body("Inventory location: "+request.getLocation()

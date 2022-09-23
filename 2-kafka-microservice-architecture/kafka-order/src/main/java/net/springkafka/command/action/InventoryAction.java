@@ -18,7 +18,7 @@ public class InventoryAction {
     public void publishToKafka(InventoryRequest request) {
 
         var message = new InventoryMessage(request.getLocation(), request.getItem(),
-                request.getQuantity(), request.getTransactionTime());
+                request.getQuantity(),  request.getTransactionTime());
         inventoryProducer.publish(message);
     }
 }

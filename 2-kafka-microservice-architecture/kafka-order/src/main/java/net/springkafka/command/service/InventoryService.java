@@ -18,4 +18,7 @@ public class InventoryService {
         inventoryAction.publishToKafka(request);
 
     }
+    public void subtractingInventory(InventoryRequest request){
+        inventoryAction.publishToKafka(request);
+    }
 }
