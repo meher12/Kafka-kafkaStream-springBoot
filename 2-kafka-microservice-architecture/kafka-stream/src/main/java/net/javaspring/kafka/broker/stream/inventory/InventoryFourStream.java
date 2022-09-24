@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.support.serializer.JsonSerde;
 
 // we will learn on how to use custom timestamp extractor.
-@Configuration
+//@Configuration
 public class InventoryFourStream {
 
     @Bean

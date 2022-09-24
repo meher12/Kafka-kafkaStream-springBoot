@@ -21,7 +21,7 @@ public class InventoryMessage {
     private String location;
     private String item;
     private long quantity;
-    private final String type = "";
+    private final String type = "ADD";
 
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)

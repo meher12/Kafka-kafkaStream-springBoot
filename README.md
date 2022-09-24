@@ -82,6 +82,12 @@
 1. Summing records by Item and quantity
 2. Subtracting Value: if type not "ADD" remove quantity 
     - using Reduce
-3. Timestamp Extractor:
-    convert timestamp to epoch https://www.epochconverter.com/ (You will see that it has same exact time with
-   value on message payload)
+3. Timestamp Extractor (We need the transaction time when we work with legacy system that is not directly publish to kafka):
+    - convert timestamp to epoch https://www.epochconverter.com/ (You will see that it has same exact time with value on message payload)
+4. Windowing (Windowing in kafka stream control how to group records for same key: 
+   - Tumbling Time window: test inventory window collection in postman:
+     For example: Tell me the average number of visitors per booth over the last 10 seconds every 10 seconds
+   - Hopping Time window - continued:
+     For example: Tell me the average number of visitors per booth over the last 10 seconds every 5 seconds
+   - Sliding Window:
+     For example: Tell me the average number of visitors per booth in the last 10 seconds

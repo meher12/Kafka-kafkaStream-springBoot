@@ -32,6 +32,7 @@ public class KafkaStreamConfig {
         // Config to log the error & stop processing
         // props.put("default.deserialization.exception.handler", LogAndFailExceptionHandler.class);
 
+
         return new KafkaStreamsConfiguration(props);
 
     }

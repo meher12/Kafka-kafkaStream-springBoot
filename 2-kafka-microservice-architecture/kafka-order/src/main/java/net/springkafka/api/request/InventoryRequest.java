@@ -19,7 +19,7 @@ public class InventoryRequest {
     private String location;
     private String item;
     private long quantity;
-    //private String type;
+    private final String type = "ADD";
 
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)

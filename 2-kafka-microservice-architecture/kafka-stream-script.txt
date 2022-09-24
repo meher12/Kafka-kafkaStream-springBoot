@@ -94,6 +94,8 @@ kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --rep
 kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --replication-factor 1 --topic t.commodity.inventory-total-two
 kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --replication-factor 1 --topic t.commodity.inventory-total-three
 kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --replication-factor 1 --topic t.commodity.inventory-four
+kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --replication-factor 1 --topic t.commodity.inventory-total-five
+kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --replication-factor 1 --topic t.commodity.inventory-total-six
 
 
 *             ********************************************* Kafka Stream CommodityOneStream ********************************
@@ -174,5 +176,11 @@ kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.
 
 *             ********************************************* Kafka Stream InventoryFourStream ********************************
 kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.inventory-four --property print.key=true  --property print.timestamp=true
+
+*             ********************************************* Kafka Stream InventoryFiveStream ********************************
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.inventory-total-five --property print.key=true   --property value.deserializer=org.apache.kafka.common.serialization.LongDeserializer
+
+*             ********************************************* Kafka Stream InventorySixStream ********************************
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.inventory-total-six --property print.key=true   --property value.deserializer=org.apache.kafka.common.serialization.LongDeserializer
 
 

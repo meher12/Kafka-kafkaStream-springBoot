@@ -40,6 +40,7 @@ public class InventoryApi {
                 .body("Inventory location: "+request.getLocation()
                         + "\n Item: " + request.getItem() +
                         "\n Quantity: " + request.getQuantity() +
+                        "\n Type: " + request.getType() +
                         "\n TransactionTime: " + request.getTransactionTime());
     }
 }
