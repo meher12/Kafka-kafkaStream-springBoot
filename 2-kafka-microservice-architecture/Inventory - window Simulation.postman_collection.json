@@ -485,6 +485,246 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Inventory Simulation 11",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"randompastdate\", pm.variables.replaceIn('{{$randomDateRecent}}'));",
+							"let pastdate = pm.environment.get(\"randompastdate\");",
+							"",
+							"const moment = require('moment');",
+							"pastdate = moment(pastdate);",
+							"",
+							"//pastdate = moment().subtract(5, 'd');",
+							"pm.environment.set(\"pastdate\", pastdate.format(\"DD-MM-YYYY hh:mm:ss\"));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"location\": \"Indonesia\",\n    \"item\" : \"{{inventorySimulationItem}}\",\n    \"quantity\": 8,\n    \"transactionTime\": \"{{pastdate}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9002/api/inventory/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"inventory",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Inventory Simulation 12",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"randompastdate\", pm.variables.replaceIn('{{$randomDateRecent}}'));",
+							"let pastdate = pm.environment.get(\"randompastdate\");",
+							"",
+							"const moment = require('moment');",
+							"pastdate = moment(pastdate);",
+							"",
+							"//pastdate = moment().subtract(5, 'd');",
+							"pm.environment.set(\"pastdate\", pastdate.format(\"DD-MM-YYYY hh:mm:ss\"));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"location\": \"Indonesia\",\n    \"item\" : \"{{inventorySimulationItem}}\",\n    \"quantity\": 6,\n    \"transactionTime\": \"{{pastdate}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9002/api/inventory/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"inventory",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Inventory Simulation 13",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"randompastdate\", pm.variables.replaceIn('{{$randomDateRecent}}'));",
+							"let pastdate = pm.environment.get(\"randompastdate\");",
+							"",
+							"const moment = require('moment');",
+							"pastdate = moment(pastdate);",
+							"",
+							"//pastdate = moment().subtract(5, 'd');",
+							"pm.environment.set(\"pastdate\", pastdate.format(\"DD-MM-YYYY hh:mm:ss\"));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"location\": \"Indonesia\",\n    \"item\" : \"{{inventorySimulationItem}}\",\n    \"quantity\": 9,\n    \"transactionTime\": \"{{pastdate}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9002/api/inventory/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"inventory",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Inventory Simulation 14",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"randompastdate\", pm.variables.replaceIn('{{$randomDateRecent}}'));",
+							"let pastdate = pm.environment.get(\"randompastdate\");",
+							"",
+							"const moment = require('moment');",
+							"pastdate = moment(pastdate);",
+							"",
+							"//pastdate = moment().subtract(5, 'd');",
+							"pm.environment.set(\"pastdate\", pastdate.format(\"DD-MM-YYYY hh:mm:ss\"));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"location\": \"Indonesia\",\n    \"item\" : \"{{inventorySimulationItem}}\",\n    \"quantity\": 15,\n    \"transactionTime\": \"{{pastdate}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9002/api/inventory/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"inventory",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Inventory Simulation 15",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"randompastdate\", pm.variables.replaceIn('{{$randomDateRecent}}'));",
+							"let pastdate = pm.environment.get(\"randompastdate\");",
+							"",
+							"const moment = require('moment');",
+							"pastdate = moment(pastdate);",
+							"",
+							"//pastdate = moment().subtract(5, 'd');",
+							"pm.environment.set(\"pastdate\", pastdate.format(\"DD-MM-YYYY hh:mm:ss\"));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"location\": \"Indonesia\",\n    \"item\" : \"{{inventorySimulationItem}}\",\n    \"quantity\": 44,\n    \"transactionTime\": \"{{pastdate}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9002/api/inventory/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"inventory",
+						"add"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [
@@ -510,7 +750,7 @@
 	"variable": [
 		{
 			"key": "inventorySimulationItem",
-			"value": "Appel",
+			"value": "Apple",
 			"type": "string"
 		}
 	]
