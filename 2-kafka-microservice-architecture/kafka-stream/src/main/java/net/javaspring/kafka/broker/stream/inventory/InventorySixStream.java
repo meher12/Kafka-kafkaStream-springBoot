@@ -14,7 +14,7 @@ import org.springframework.kafka.support.serializer.JsonSerde;
 import java.time.Duration;
 
 // we will learn on how to use custom timestamp extractor.
-@Configuration
+//@Configuration
 public class InventorySixStream {
 
     @Bean

@@ -1,0 +1,553 @@
+{
+	"info": {
+		"_postman_id": "2ef0a96e-6567-42d8-be64-f76b8179c890",
+		"name": "Online Order/Payment - outerJoin",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19388834"
+	},
+	"item": [
+		{
+			"name": "Online Order A",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"onlineOrderNumber\": \"A2\",\n    \"amount\": \"{{$randomInt}}\",\n    \"username\": \"{{$randomUserName}}\",\n    \"onlineOrderDateTime\": \"{{recentdate}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9002/api/onlineOrder",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"onlineOrder"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Online Order B",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"onlineOrderNumber\": \"B2\",\n    \"amount\": \"{{$randomInt}}\",\n    \"username\": \"{{$randomUserName}}\",\n    \"onlineOrderDateTime\": \"{{recentdate}}\"\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9002/api/onlineOrder",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"onlineOrder"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Online Payment X",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"paymentNumber\": \"X\",\n    \"paymentMethod\": \"{{$randomBankAccountName}}\",\n    \"onlinePaymentDateTime\": \"{{recentdate}}\"\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9002/api/onlinePayment",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"onlinePayment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Online Payment A",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"paymentNumber\": \"A2\",\n    \"paymentMethod\": \"{{$randomBankAccountName}}\",\n    \"onlinePaymentDateTime\": \"{{recentdate}}\"\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9002/api/onlinePayment",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"onlinePayment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Online Order C",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"onlineOrderNumber\": \"C2\",\n    \"amount\": \"{{$randomInt}}\",\n    \"username\": \"{{$randomUserName}}\",\n    \"onlineOrderDateTime\": \"{{recentdate}}\"\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9002/api/onlineOrder",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"onlineOrder"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Online Payment B",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"paymentNumber\": \"B2\",\n    \"paymentMethod\": \"{{$randomBankAccountName}}\",\n    \"onlinePaymentDateTime\": \"{{recentdate}}\"\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9002/api/onlinePayment",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"onlinePayment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Online Payment  D",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"paymentNumber\": \"D2\",\n    \"paymentMethod\": \"{{$randomBankAccountName}}\",\n    \"onlinePaymentDateTime\": \"{{recentdate}}\"\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9002/api/onlinePayment",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"onlinePayment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Online Order D",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"onlineOrderNumber\": \"D2\",\n    \"amount\": \"{{$randomInt}}\",\n    \"username\": \"{{$randomUserName}}\",\n    \"onlineOrderDateTime\": \"{{recentdate}}\"\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9002/api/onlineOrder",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"onlineOrder"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Online Payment F",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"paymentNumber\": \"F2\",\n    \"paymentMethod\": \"{{$randomBankAccountName}}\",\n    \"onlinePaymentDateTime\": \"{{recentdate}}\"\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9002/api/onlinePayment",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"onlinePayment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Online Order  E",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"onlineOrderNumber\": \"E2\",\n    \"amount\": \"{{$randomInt}}\",\n    \"username\": \"{{$randomUserName}}\",\n    \"onlineOrderDateTime\": \"{{recentdate}}\"\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9002/api/onlineOrder",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"onlineOrder"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Online Payment C",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"paymentNumber\": \"C2\",\n    \"paymentMethod\": \"{{$randomBankAccountName}}\",\n    \"onlinePaymentDateTime\": \"{{recentdate}}\"\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9002/api/onlinePayment",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"onlinePayment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Online Order F",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"onlineOrderNumber\": \"F2\",\n    \"amount\": \"{{$randomInt}}\",\n    \"username\": \"{{$randomUserName}}\",\n    \"onlineOrderDateTime\": \"{{recentdate}}\"\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9002/api/onlineOrder",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"onlineOrder"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Online Payment E",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"paymentNumber\": \"E2\",\n    \"paymentMethod\": \"{{$randomBankAccountName}}\",\n    \"onlinePaymentDateTime\": \"{{recentdate}}\"\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9002/api/onlinePayment",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"onlinePayment"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"const moment = require('moment');",
+					"pm.globals.set(\"recentdate\", moment().format(\"DD-MM-YYYY hh:mm:ss\"));",
+					"//\"onlineOrderDateTime\": \"{{recentdate}}\",",
+					"//    \"onlinePaymentDateTime\": \"{{recentdate}}\","
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

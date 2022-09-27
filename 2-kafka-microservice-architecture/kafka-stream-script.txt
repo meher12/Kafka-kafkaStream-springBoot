@@ -97,6 +97,12 @@ kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --rep
 kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --replication-factor 1 --topic t.commodity.inventory-total-five
 kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --replication-factor 1 --topic t.commodity.inventory-total-six
 
+kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --replication-factor 1 --topic t.commodity.online-order
+kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --replication-factor 1 --topic t.commodity.online-payment
+kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --replication-factor 1 --topic t.commodity.join-order-payment-one
+kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --replication-factor 1 --topic  t.commodity.join-order-payment-two
+kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --replication-factor 1 --topic  t.commodity.join-order-payment-three
+
 
 *             ********************************************* Kafka Stream CommodityOneStream ********************************
 // the 3 sink
@@ -178,9 +184,13 @@ kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.
 kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.inventory-four --property print.key=true  --property print.timestamp=true
 
 *             ********************************************* Kafka Stream InventoryFiveStream ********************************
-kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.inventory-total-five --property print.key=true   --property value.deserializer=org.apache.kafka.common.serialization.LongDeserializer
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.inventory-total-five --property print.key=true  --property print.timestamp=true --property value.deserializer=org.apache.kafka.common.serialization.LongDeserializer
 
 *             ********************************************* Kafka Stream InventorySixStream ********************************
-kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.inventory-total-six --property print.key=true   --property value.deserializer=org.apache.kafka.common.serialization.LongDeserializer
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.inventory-total-six --property print.key=true  --property print.timestamp=true --property value.deserializer=org.apache.kafka.common.serialization.LongDeserializer
 
+*             ********************************************* Kafka Stream OrderPaymentOneStream ********************************
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.join-order-payment-one --property print.key=true  --property print.timestamp=true
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.join-order-payment-two --property print.key=true  --property print.timestamp=true
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.join-order-payment-three --property print.key=true  --property print.timestamp=true
 

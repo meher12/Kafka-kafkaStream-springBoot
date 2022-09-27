@@ -91,3 +91,6 @@
      For example: Tell me the average number of visitors per booth over the last 10 seconds every 5 seconds
    - Sliding Window: <br/>
      For example: Tell me the average number of visitors per booth in the last 10 seconds
+
+### 3.9. Joining (innerJoin, leftJoin and outJoin) Order & Payment Stream
+       - join with timestamp

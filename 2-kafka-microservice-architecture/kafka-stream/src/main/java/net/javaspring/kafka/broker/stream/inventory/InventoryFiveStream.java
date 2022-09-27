@@ -64,8 +64,7 @@ public class InventoryFiveStream {
         //Then we map the values, And group it, this time using one hour window,
         inventoryStream
                .filter((k,v) -> !v.equals("ADD"), Named.as("filter_out_invalid_Type"))
-                .mapValues((v) -> v.getType().equalsIgnoreCase("ADD") ? v.getQuantity() : -1 * v.getQuantity(),
-                        Named.as("Map_values"))
+               .mapValues((v) -> v.getType().equalsIgnoreCase("ADD") ? v.getQuantity() : -1 * v.getQuantity(),  Named.as("Map_values"))
 
                 .groupByKey()
 

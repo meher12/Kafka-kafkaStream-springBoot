@@ -1,5 +1,6 @@
 package net.javaspring.kafka.config;
 
+import net.javaspring.kafka.util.OnlineOrderTimestampExtractor;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.streams.StreamsConfig;
 import org.apache.kafka.streams.errors.LogAndContinueExceptionHandler;
@@ -32,6 +33,7 @@ public class KafkaStreamConfig {
         // Config to log the error & stop processing
         // props.put("default.deserialization.exception.handler", LogAndFailExceptionHandler.class);
 
+       // props.put(StreamsConfig.DEFAULT_TIMESTAMP_EXTRACTOR_CLASS_CONFIG, OnlineOrderTimestampExtractor.class);
 
         return new KafkaStreamsConfiguration(props);
 
