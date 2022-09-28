@@ -253,7 +253,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"username\": \"pooh-C\",\n    \"layout\": \"horizontal-C\"\n}",
+					"raw": "{\n    \"username\": \"rabbit-C\",\n    \"layout\": \"horizontal-C\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"

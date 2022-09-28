@@ -70,7 +70,7 @@ public class WebDesignVoteOneStream {
                 .count().toStream().print(Printed.<String, Long>toSysOut().withLabel("Vote one - color"));
        // this is for layout vote
         joinTable.groupBy((username, voteDesign) -> KeyValue.pair(voteDesign.getLayout(), voteDesign.getLayout()))
-                .count().toStream().print(Printed.<String, Long>toSysOut().withLabel("Vote layout - one"));
+                .count().toStream().print(Printed.<String, Long>toSysOut().withLabel("Vote one - layout"));
 
         return joinTable.toStream();
     }

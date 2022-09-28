@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "42966ee5-63ce-4915-b1b9-9eb6c20b448c",
-		"name": "Web Design Vote -innerJoin",
+		"name": "Web Design Vote - innerJoin",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "19388834"
 	},
@@ -253,7 +253,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"username\": \"pooh\",\n    \"layout\": \"horizontal\"\n}",
+					"raw": "{\n    \"username\": \"rabbit\",\n    \"layout\": \"horizontal\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"

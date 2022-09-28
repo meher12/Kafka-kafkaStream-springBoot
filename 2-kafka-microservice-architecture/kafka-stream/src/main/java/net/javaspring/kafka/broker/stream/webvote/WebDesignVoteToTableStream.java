@@ -16,8 +16,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.support.serializer.JsonSerde;
 
-//@Configuration
-public class WebDesignVoteThreeStream {
+@Configuration
+public class WebDesignVoteToTableStream {
 
     @Bean
     public KStream<String, WebDesignVoteMessage> kStreamWebDesignVote(StreamsBuilder builder) {
@@ -35,30 +35,22 @@ public class WebDesignVoteThreeStream {
         extract it using mapValues.
         The key is username, which is already set on vote producer.
          */
-        builder.stream("t.commodity.web.vote-color", Consumed.with(stringSerde, colorSerde, new WebColorVoteTimestampExtractor(), null))
-                .mapValues(v -> v.getColor()).to("t.commodity.web.vote-three-username-color");
-        /*
-        build a table that contains username and color.
-         */
-        var colorTable = builder.table("t.commodity.web.vote-three-username-color",
-                Consumed.with(stringSerde, stringSerde));
+        var colorTable = builder.stream("t.commodity.web.vote-color", Consumed.with(stringSerde, colorSerde, new WebColorVoteTimestampExtractor(), null))
+                .mapValues(v -> v.getColor()).toTable();
+
 
         /* Layout
         We will read from layout stream and build table from it For this stream, we only need the layout, so
         extract it using mapValues.
         The key is username, which is already set on vote producer.
          */
-        builder.stream("t.commodity.web.vote-layout", Consumed.with(stringSerde, layoutSerde, new WebLayoutVoteTimestampExtractor(), null))
-                .mapValues(v -> v.getLayout()).to("t.commodity.web.vote-three-username-layout");
-        /*
-        build a table that contains username and layout.
-         */
-        var layoutTable = builder.table("t.commodity.web.vote-three-username-layout",
-                Consumed.with(stringSerde, stringSerde));
+        var layoutTable = builder.stream("t.commodity.web.vote-layout", Consumed.with(stringSerde, layoutSerde, new WebLayoutVoteTimestampExtractor(), null))
+                .mapValues(v -> v.getLayout()).toTable();
+
 
         // innerJoin
-        var joinTable = colorTable.outerJoin(layoutTable, this::voteJoiner, Materialized.with(stringSerde, designSerde));
-        joinTable.toStream().to("t.commodity.web.vote-three-result");
+        var joinTable = colorTable.join(layoutTable, this::voteJoiner, Materialized.with(stringSerde, designSerde));
+        joinTable.toStream().to("t.commodity.web.vote-four-result");
 
         /* vote Result
         to see the vote result. I will not send the vote result to kafka topic, only print it to console.
@@ -67,10 +59,10 @@ public class WebDesignVoteThreeStream {
 
         // this is for color vote
         joinTable.groupBy((username, voteDesign) -> KeyValue.pair(voteDesign.getColor(), voteDesign.getColor()))
-                .count().toStream().print(Printed.<String, Long>toSysOut().withLabel("Vote three - color"));
+                .count().toStream().print(Printed.<String, Long>toSysOut().withLabel("Vote four - color"));
        // this is for layout vote
         joinTable.groupBy((username, voteDesign) -> KeyValue.pair(voteDesign.getLayout(), voteDesign.getLayout()))
-                .count().toStream().print(Printed.<String, Long>toSysOut().withLabel("Vote three - layout"));
+                .count().toStream().print(Printed.<String, Long>toSysOut().withLabel("Vote  four - layout "));
 
         return joinTable.toStream();
     }
