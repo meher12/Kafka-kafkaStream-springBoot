@@ -1,0 +1,310 @@
+{
+	"info": {
+		"_postman_id": "147da6c8-68d4-44b8-b6d1-5b945f83847f",
+		"name": "Web Design Vote - outerJoin",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19388834"
+	},
+	"item": [
+		{
+			"name": "Color Vote Piglet 1",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"piglet-C\",\n    \"color\": \"pink-C\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9002/api/webColor/vote",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"webColor",
+						"vote"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Color Vote Eeyore 1",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"eeyore-C\",\n    \"color\": \"pink-C\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9002/api/webColor/vote",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"webColor",
+						"vote"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "layout Vote Piglet 1",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"piglet-C\",\n    \"layout\": \"vertical-C\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9002/api/webLayout/vote",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"webLayout",
+						"vote"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Color Vote Pooh 1",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"pooh-C\",\n    \"color\": \"yellow-C\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9002/api/webColor/vote",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"webColor",
+						"vote"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "layout Vote Tigger 1",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"tigger-C\",\n    \"layout\": \"vertical-C\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9002/api/webLayout/vote",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"webLayout",
+						"vote"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "layout Vote Piglet 2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"piglet-C\",\n    \"layout\": \"horizontal-C\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9002/api/webLayout/vote",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"webLayout",
+						"vote"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Color Vote Tigger 1",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"tigger-C\",\n    \"color\": \"pink-C\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9002/api/webColor/vote",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"webColor",
+						"vote"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "layout Vote pooh 1",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"pooh-C\",\n    \"layout\": \"vertical-C\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9002/api/webLayout/vote",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"webLayout",
+						"vote"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "layout Vote rabbit 1",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"pooh-C\",\n    \"layout\": \"horizontal-C\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9002/api/webLayout/vote",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"webLayout",
+						"vote"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Color Vote Tigger 2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"tigger-C\",\n    \"color\": \"yellow-C\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9002/api/webColor/vote",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9002",
+					"path": [
+						"api",
+						"webColor",
+						"vote"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
