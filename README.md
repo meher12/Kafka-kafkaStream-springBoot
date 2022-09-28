@@ -92,5 +92,7 @@
    - Sliding Window: <br/>
      For example: Tell me the average number of visitors per booth in the last 10 seconds
 
-### 3.9. Joining (innerJoin, leftJoin and outJoin) Order & Payment Stream
+### 3.9. Joining (innerJoin, leftJoin and outJoin) Order & Payment Stream (Stream - Stream)
        - join with timestamp
+
+### 3.10. Joining (innerJoin, leftJoin and outJoin) Two Vote Tables (Tables - Tables)

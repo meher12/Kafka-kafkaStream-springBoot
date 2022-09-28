@@ -103,6 +103,11 @@ kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --rep
 kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --replication-factor 1 --topic  t.commodity.join-order-payment-two
 kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --replication-factor 1 --topic  t.commodity.join-order-payment-three
 
+kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --replication-factor 1 --topic  t.commodity.web.vote-color
+kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --replication-factor 1 --topic  t.commodity.web.vote-layout
+kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --replication-factor 1 --topic t.commodity.web.vote-one-username-color
+kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --replication-factor 1 --topic t.commodity.web.vote-one-username-layout
+kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --replication-factor 1 --topic t.commodity.web.vote-one-result
 
 *             ********************************************* Kafka Stream CommodityOneStream ********************************
 // the 3 sink
@@ -193,4 +198,8 @@ kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.
 kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.join-order-payment-one --property print.key=true  --property print.timestamp=true
 kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.join-order-payment-two --property print.key=true  --property print.timestamp=true
 kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.join-order-payment-three --property print.key=true  --property print.timestamp=true
+
+*             ********************************************* Kafka Stream WebDesignVoteOneStream ********************************
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.web.vote-one-result --property print.key=true  --property print.timestamp=true
+
 
