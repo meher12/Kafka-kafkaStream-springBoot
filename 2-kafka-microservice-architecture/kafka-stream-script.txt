@@ -113,6 +113,10 @@ kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --rep
 kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --replication-factor 1 --topic t.commodity.web.vote-two-username-layout
 kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --replication-factor 1 --topic t.commodity.web.vote-two-result
 
+kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --replication-factor 1 --topic t.commodity.web.vote-three-username-color
+kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --replication-factor 1 --topic t.commodity.web.vote-three-username-layout
+kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --replication-factor 1 --topic t.commodity.web.vote-three-result
+
 *             ********************************************* Kafka Stream CommodityOneStream ********************************
 // the 3 sink
 kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.pattern-one --property key.separator=" :Pattern: "  --property print.key=true --property print.value=true
@@ -208,5 +212,8 @@ kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.
 
 *             ********************************************* Kafka Stream WebDesignVoteTwoStream ********************************
 kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.web.vote-two-result --property print.key=true  --property print.timestamp=true
+
+*             ********************************************* Kafka Stream WebDesignVoteThreeStream ********************************
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.web.vote-three-result --property print.key=true  --property print.timestamp=true
 
 
