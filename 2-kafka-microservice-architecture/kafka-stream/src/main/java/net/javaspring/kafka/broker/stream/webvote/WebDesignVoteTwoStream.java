@@ -16,8 +16,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.support.serializer.JsonSerde;
 
-//@Configuration
-public class WebDesignVoteOneStream {
+@Configuration
+public class WebDesignVoteTwoStream {
 
     @Bean
     public KStream<String, WebDesignVoteMessage> kStreamWebDesignVote(StreamsBuilder builder) {
@@ -36,11 +36,11 @@ public class WebDesignVoteOneStream {
         The key is username, which is already set on vote producer.
          */
         builder.stream("t.commodity.web.vote-color", Consumed.with(stringSerde, colorSerde, new WebColorVoteTimestampExtractor(), null))
-                .mapValues(v -> v.getColor()).to("t.commodity.web.vote-one-username-color");
+                .mapValues(v -> v.getColor()).to("t.commodity.web.vote-two-username-color");
         /*
         build a table that contains username and color.
          */
-        var colorTable = builder.table("t.commodity.web.vote-one-username-color",
+        var colorTable = builder.table("t.commodity.web.vote-two-username-color",
                 Consumed.with(stringSerde, stringSerde));
 
         /* Layout
@@ -49,16 +49,16 @@ public class WebDesignVoteOneStream {
         The key is username, which is already set on vote producer.
          */
         builder.stream("t.commodity.web.vote-layout", Consumed.with(stringSerde, layoutSerde, new WebLayoutVoteTimestampExtractor(), null))
-                .mapValues(v -> v.getLayout()).to("t.commodity.web.vote-one-username-layout");
+                .mapValues(v -> v.getLayout()).to("t.commodity.web.vote-two-username-layout");
         /*
         build a table that contains username and layout.
          */
-        var layoutTable = builder.table("t.commodity.web.vote-one-username-layout",
+        var layoutTable = builder.table("t.commodity.web.vote-two-username-layout",
                 Consumed.with(stringSerde, stringSerde));
 
         // innerJoin
-        var joinTable = colorTable.join(layoutTable, this::voteJoiner, Materialized.with(stringSerde, designSerde));
-        joinTable.toStream().to("t.commodity.web.vote-one-result");
+        var joinTable = colorTable.leftJoin(layoutTable, this::voteJoiner, Materialized.with(stringSerde, designSerde));
+        joinTable.toStream().to("t.commodity.web.vote-two-result");
 
         /* vote Result
         to see the vote result. I will not send the vote result to kafka topic, only print it to console.
@@ -67,10 +67,10 @@ public class WebDesignVoteOneStream {
 
         // this is for color vote
         joinTable.groupBy((username, voteDesign) -> KeyValue.pair(voteDesign.getColor(), voteDesign.getColor()))
-                .count().toStream().print(Printed.<String, Long>toSysOut().withLabel("Vote one - color"));
+                .count().toStream().print(Printed.<String, Long>toSysOut().withLabel("Vote two - color"));
        // this is for layout vote
         joinTable.groupBy((username, voteDesign) -> KeyValue.pair(voteDesign.getLayout(), voteDesign.getLayout()))
-                .count().toStream().print(Printed.<String, Long>toSysOut().withLabel("Vote layout - one"));
+                .count().toStream().print(Printed.<String, Long>toSysOut().withLabel("Vote two - layout"));
 
         return joinTable.toStream();
     }
