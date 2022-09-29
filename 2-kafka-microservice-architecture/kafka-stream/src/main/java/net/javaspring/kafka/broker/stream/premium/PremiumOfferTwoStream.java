@@ -5,15 +5,18 @@ import net.javaspring.kafka.broker.message.PremiumPurchaseMessage;
 import net.javaspring.kafka.broker.message.PremiumUserMessage;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.streams.StreamsBuilder;
-import org.apache.kafka.streams.kstream.*;
+import org.apache.kafka.streams.kstream.Consumed;
+import org.apache.kafka.streams.kstream.Joined;
+import org.apache.kafka.streams.kstream.KStream;
+import org.apache.kafka.streams.kstream.Produced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.support.serializer.JsonSerde;
 
 import java.util.List;
 
-//@Configuration
-public class PremiumOfferOneStream {
+@Configuration
+public class PremiumOfferTwoStream {
 
     @Bean
     public KStream<String, PremiumOfferMessage> kStreamPremiumOffer(StreamsBuilder builder) {
@@ -41,16 +44,16 @@ public class PremiumOfferOneStream {
                         Consumed.with(stringSerde, userSerde))
                 .filter((key, value) -> filterLevel.contains(value.getLevel().toLowerCase()));
 
-        // join
+        // LeftJoin
         /*
         Joining stream and table will create another stream
         Create joiner method.
         This will takes premium purchase and premium user as input, and returns premium offer
         Send the join stream to sink topic
         * */
-        var offerStream = purchaseStream.join(userTable, this::joiner,
+        var offerStream = purchaseStream.leftJoin(userTable, this::joiner,
                 Joined.with(stringSerde, purchaseSerde,userSerde));
-        offerStream.to("t.commodity.premium-offer-one", Produced.with(stringSerde, offerSerde));
+        offerStream.to("t.commodity.premium-offer-two", Produced.with(stringSerde, offerSerde));
 
         return offerStream;
     }
@@ -59,8 +62,12 @@ public class PremiumOfferOneStream {
         var result = new PremiumOfferMessage();
 
         result.setUsername(purchase.getUsername());
-        result.setLevel(user.getLevel());
         result.setPurchaseNumber(purchase.getPurchaseNumber());
+        if(user != null) {
+        result.setLevel(user.getLevel());
+        }
+
+
 
         return result;
     }
