@@ -1,0 +1,67 @@
+Here is the difference, we now has yellow
+nodes on join nodes.
+To make things clear, I will start another
+consumer in parallel.
+This time I will display record from filtered
+premium user
+And from other topic, the sink topic
+In the postman, I will use new key, so we
+start fresh
+You can use postman folder with title inner
+join stream - global table copy
+I will run it with 3 seconds delay, so we
+have apple-to-apple comparison, just different key
+Now when you see the premium user filtered
+topic, you will see these records :
+Clark Gold, Bruce Gold, Alfred Gold, and Clark Diamond.
+So we never has bronze or silver level on
+the intermediary topic.
+This means, once a user became gold or diamond,
+he will always in that state, the only possible
+change is between gold and diamond, but never
+to bronze or silver, even if we update the
+original user topic.
+
+
+
+This make sense, since we filter original
+topic to intermediary topic, so we only pass
+the filtered records : gold or diamond.
+So even if all user downgraded to bronze,
+as long as they ever been on gold or diamond,
+the join will always create join records against
+latest data in intermediary topic.
+So the diagram is more something like this( KStreamGlobalTableUseCase.jpg)
+on user side.
+Note the yellow nodes, which in this case
+represents data on on user global table.
+In KTable, when the source topic is updated,
+table is updated, then filtered as we need.
+So if level is bronze or silver, user is filtered
+and no join happened.
+In GlobalKTable, data is never updated when
+level downgraded
+Why I’m showing you this case?
+I’d like to tell you that kafka global table is not database table, they have different characteristic
+Specifically, you cannot filter kafka topic
+like we use WHERE statement in SQL, as we see
+Also, be careful if you works with very high
+transaction, as global table updates will
+have latency for data updates, compared to
+kafka table, although the latency maybe in
+milliseconds or maybe around one second.
+That’s why, global table is not suitable
+if your data has frequent updates, and very
+large data.
+How frequent, or how many data?
+This I cannot answer, it can be different
+based on many things : kafka configuration,
+network latency, business transaction number, etc
+So if you works with organization that rely
+on kafka as communication, make sure that
+kafka configured to be highly available and
+tuned correctly.
+Those things is not in this course scope,
+and my personal experience, usually its not
+software engineers skill to configure those
+items...

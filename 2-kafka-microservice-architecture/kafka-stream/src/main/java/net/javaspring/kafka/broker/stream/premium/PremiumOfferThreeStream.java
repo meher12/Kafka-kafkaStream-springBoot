@@ -15,8 +15,8 @@ import org.springframework.kafka.support.serializer.JsonSerde;
 
 import java.util.List;
 
-//@Configuration
-public class PremiumOfferTwoStream {
+@Configuration
+public class PremiumOfferThreeStream {
 
     @Bean
     public KStream<String, PremiumOfferMessage> kStreamPremiumOffer(StreamsBuilder builder) {
@@ -39,21 +39,35 @@ public class PremiumOfferTwoStream {
         //We only interested on gold and diamond level, so we need to filter only for those levels.
         var filterLevel = List.of("gold", "diamond");
 
-        // table(right/secondary)
-        var userTable = builder.table("t.commodity.premium-user",
-                        Consumed.with(stringSerde, userSerde))
-                .filter((key, value) -> filterLevel.contains(value.getLevel().toLowerCase()));
+        // intermediary topic
+        builder.stream("t.commodity.premium-user", Consumed.with(stringSerde,userSerde))
+                .filter((key, value) -> filterLevel.contains(value.getLevel().toLowerCase()))
+                .to("t.commodity.premium-user-filtered", Produced.with(stringSerde, userSerde));
 
-        // LeftJoin
+        // GlobalTable(right/secondary)
+        var userGlobalTable = builder.globalTable("t.commodity.premium-user-filtered",
+                Consumed.with(stringSerde, userSerde));
+
+        // join globalTable
         /*
         Joining stream and table will create another stream
         Create joiner method.
         This will takes premium purchase and premium user as input, and returns premium offer
         Send the join stream to sink topic
         * */
-        var offerStream = purchaseStream.leftJoin(userTable, this::joiner,
-                Joined.with(stringSerde, purchaseSerde,userSerde));
-        offerStream.to("t.commodity.premium-offer-two", Produced.with(stringSerde, offerSerde));
+
+        // On stream-global table, we need global table, key selector, and joiner.
+        /*
+        In this case, the key is already match, which
+        is username, so we can either use this
+        Or this, in case stream key is not username
+        This is where key selector comes handy
+        But for now, let’s just use the earlier
+        approach, using key.
+        * (key, value) -> value.getUsername() or leave it (key, value) -> key because is already matched from producer
+        */
+        var offerStream = purchaseStream.join(userGlobalTable, (key, value) -> key ,this::joiner);
+        offerStream.to("t.commodity.premium-offer-three", Produced.with(stringSerde, offerSerde));
 
         return offerStream;
     }
@@ -62,12 +76,8 @@ public class PremiumOfferTwoStream {
         var result = new PremiumOfferMessage();
 
         result.setUsername(purchase.getUsername());
-        result.setPurchaseNumber(purchase.getPurchaseNumber());
-        if(user != null) {
         result.setLevel(user.getLevel());
-        }
-
-
+        result.setPurchaseNumber(purchase.getPurchaseNumber());
 
         return result;
     }

@@ -122,7 +122,8 @@ kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --rep
 kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --replication-factor 1 --topic t.commodity.premium-user
 kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --replication-factor 1 --topic t.commodity.premium-offer-one
 kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --replication-factor 1 --topic t.commodity.premium-offer-two
-
+kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --replication-factor 1 --topic t.commodity.premium-user-filtered
+kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --replication-factor 1 --topic t.commodity.premium-offer-three
 *             ********************************************* Kafka Stream CommodityOneStream ********************************
 // the 3 sink
 kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.pattern-one --property key.separator=" :Pattern: "  --property print.key=true --property print.value=true
@@ -230,3 +231,7 @@ kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.
 
 *  ********************************************* Kafka Stream PremiumOfferTwoStream ********************************
 kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.premium-offer-two --property print.key=true
+
+*  ********************************************* Kafka Stream PremiumOfferThreeStream ********************************
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.premium-offer-three --property print.key=true
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic  t.commodity.premium-user-filtered

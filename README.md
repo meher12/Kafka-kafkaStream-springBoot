@@ -99,4 +99,12 @@
     - With intermediary topic
     - With toTable() : stream.toTable()
 
-### 3.11. Joining Stream & Table (Stream - table):
+### 3.11. Joining (innerJoin, leftJoin) Stream & Table (Stream - Table):
+       - Only these two join outerJoin not supported:
+           - innerJoin
+           - leftJoin
+
+### 3.12. Joining (innerJoin, leftJoin) Stream & GlobalTable (Stream - GlobalTable):
+       - Only these two join outerJoin not supported:
+           - GlobalTable innerJoin
+           - GlobalTable leftJoin
