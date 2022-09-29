@@ -118,6 +118,10 @@ kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --rep
 kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --replication-factor 1 --topic t.commodity.web.vote-three-result
 kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --replication-factor 1 --topic t.commodity.web.vote-four-result
 
+kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --replication-factor 1 --topic t.commodity.premium-purchase
+kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --replication-factor 1 --topic t.commodity.premium-user
+kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --replication-factor 1 --topic t.commodity.premium-offer-one
+
 *             ********************************************* Kafka Stream CommodityOneStream ********************************
 // the 3 sink
 kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.pattern-one --property key.separator=" :Pattern: "  --property print.key=true --property print.value=true
@@ -220,3 +224,5 @@ kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.
 *             ********************************************* Kafka Stream WebDesignVoteToTableStream ********************************
 kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.web.vote-four-result --property print.key=true  --property print.timestamp=true
 
+  ********************************************* Kafka Stream PremiumOfferOneStream ********************************
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic t.commodity.premium-offer-one --property print.key=true

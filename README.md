@@ -92,9 +92,11 @@
    - Sliding Window: <br/>
      For example: Tell me the average number of visitors per booth in the last 10 seconds
 
-### 3.9. Joining (innerJoin, leftJoin and outJoin) Order & Payment Streams (Stream - Stream)
+### 3.9. Joining (innerJoin, leftJoin and outJoin) Order & Payment Streams (Stream - Stream):
        - join with timestamp
 
-### 3.10. Joining (innerJoin, leftJoin and outJoin) Two Vote Tables (Table - Table)
+### 3.10. Joining (innerJoin, leftJoin and outJoin) Two Vote Tables (Table - Table):
     - With intermediary topic
     - With toTable() : stream.toTable()
+
+### 3.11. Joining Stream & Table (Stream - table):

@@ -1,0 +1,126 @@
+//*****
+This will takes premium purchase and premium
+user as input, and returns premium offer
+
+The blue purchase stream
+and red user table.
+
+
+
+At first sequence, we set user level.
+
+46
+
+Bruce has bronze level, and Clark is gold.
+
+47
+
+Alfred does not has any level.
+
+48
+
+On sequence 2, Bruce made purchase number
+21.
+
+49
+
+Since Bruce current level is bronze, it is
+not considered as premium offer, no join record
+
+50
+
+happened.
+
+51
+
+On sequence 3, Clark made purchase number
+31.
+
+52
+
+Join record happened for 31, because clark
+level is gold
+
+53
+
+On 4th sequence, we update Bruce level to
+gold.
+
+54
+
+Since stream-table join is asymmetric, purchase
+21 on sequence 2 does not form join record.
+
+55
+
+On sequence 5, Bruce made purchase number
+22.
+
+56
+
+At this point, Bruce level is gold, so join
+record happened for this purchase
+
+57
+
+On sequence 6, Alfred made purchase number
+11.
+
+58
+
+No join happened, since alfred has no level
+
+59
+
+On sequence 7, Clark level downgraded to silver
+
+60
+
+So, Clark purchase number 32, on sequence
+8 does not form join record, since his level
+
+61
+
+is currently silver.
+
+62
+
+However, Bruce purchase number 23 on sequence
+9 form join record, since we only change Clark
+
+63
+
+level, but Bruce level remains gold.
+
+64
+
+On sequence 10, we downgrade Bruce level to
+silver.
+
+65
+
+So, Bruce purchase number 24 on sequence 11
+does not form join record.
+
+66
+
+As well as Clark purchase on sequence 12,
+because Clark level is silver.
+
+67
+
+On sequence 13, we upgrade Alfred level to
+gold, and Clark level to diamond
+
+68
+
+So clark purchase number 34 in sequence 14
+will form join record.
+
+69
+
+However, Alfred purchase number 11 does not
+form join record, since that purchase happened
+
+67
+before we upgrade Alfred level.
