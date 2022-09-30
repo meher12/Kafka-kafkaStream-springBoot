@@ -15,7 +15,7 @@ import org.springframework.kafka.support.serializer.JsonSerde;
 
 import java.util.List;
 
-@Configuration
+//@Configuration
 public class PremiumOfferThreeStream {
 
     @Bean
