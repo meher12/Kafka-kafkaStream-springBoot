@@ -21,6 +21,10 @@ spring:
         - localhost:9092
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      #  To configure on yml file, open application.yml
+      #   on kafka-order, and add this line under key
+      properties:
+        enable.idempotence: true
     #      for reply reward producer
     consumer:
       bootstrap-servers:

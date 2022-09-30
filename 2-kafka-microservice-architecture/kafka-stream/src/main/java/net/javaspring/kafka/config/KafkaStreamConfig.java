@@ -1,9 +1,11 @@
 package net.javaspring.kafka.config;
 
 import net.javaspring.kafka.util.OnlineOrderTimestampExtractor;
+import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.streams.StreamsConfig;
 import org.apache.kafka.streams.errors.LogAndContinueExceptionHandler;
+import org.apache.kafka.streams.processor.To;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.annotation.EnableKafkaStreams;
@@ -33,7 +35,20 @@ public class KafkaStreamConfig {
         // Config to log the error & stop processing
         // props.put("default.deserialization.exception.handler", LogAndFailExceptionHandler.class);
 
-       // props.put(StreamsConfig.DEFAULT_TIMESTAMP_EXTRACTOR_CLASS_CONFIG, OnlineOrderTimestampExtractor.class);
+        /* we must use library that support exactly once, which is kafka stream.
+        To enable exactly once
+         */
+       props.put(StreamsConfig.PROCESSING_GUARANTEE_CONFIG, StreamsConfig.EXACTLY_ONCE_V2);
+       /*
+        To enable idempotent producer, we need to add configuration on producer
+        There are several ways to do this.
+        We can configure through java code or spring
+        application.yml.
+        For example, configuration on kafka-stream
+        project is java-code based, so open KafkaStreamsConfig,
+        and add this line.
+        */
+        props.put(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, "true");
 
         return new KafkaStreamsConfiguration(props);
 

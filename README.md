@@ -111,3 +111,6 @@
           - Subscription Purchase (left/primary) has 5 partition
           - Subscription User (right/secondary) has 2 partition
        - GlobalTable leftJoin
+
+### 3.13. Delivery Semantic:
+    - Exactly Once Semantic
