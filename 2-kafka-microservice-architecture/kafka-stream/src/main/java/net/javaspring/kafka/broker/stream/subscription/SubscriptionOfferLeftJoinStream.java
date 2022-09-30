@@ -4,16 +4,16 @@ import net.javaspring.kafka.broker.message.SubscriptionOfferMessage;
 import net.javaspring.kafka.broker.message.SubscriptionPurchaseMessage;
 import net.javaspring.kafka.broker.message.SubscriptionUserMessage;
 import org.apache.kafka.common.serialization.Serdes;
-import org.apache.kafka.common.utils.Bytes;
 import org.apache.kafka.streams.StreamsBuilder;
-import org.apache.kafka.streams.kstream.*;
-import org.apache.kafka.streams.state.KeyValueStore;
+import org.apache.kafka.streams.kstream.Consumed;
+import org.apache.kafka.streams.kstream.KStream;
+import org.apache.kafka.streams.kstream.Produced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.support.serializer.JsonSerde;
 
-//@Configuration
-public class SubscriptionOfferOneStream {
+@Configuration
+public class SubscriptionOfferLeftJoinStream {
 
     static final String USER_STORE = "subscription-user-store";
 
@@ -37,9 +37,9 @@ public class SubscriptionOfferOneStream {
         var userGlobalTable = builder.globalTable("t.commodity.subscription-user",
                 Consumed.with(stringSerde, userSerde));
 
-        var offerStream = purchaseStream.join(userGlobalTable,(key, value) -> key ,this::joiner);
+        var offerStream = purchaseStream.leftJoin(userGlobalTable,(key, value) -> key ,this::joiner);
 
-        offerStream.to("t.commodity.subscription-offer-one", Produced.with(stringSerde, offerSerde));
+        offerStream.to("t.commodity.subscription-offer-two", Produced.with(stringSerde, offerSerde));
 
         return offerStream;
 
@@ -50,7 +50,9 @@ public class SubscriptionOfferOneStream {
 
         result.setUsername(purchase.getUsername());
         result.setSubscriptionNumber(purchase.getSubscriptionNumber());
-        result.setDuration(user.getDuration());
+        if(user != null) {
+            result.setDuration(user.getDuration());
+        }
         return result;
 
     }

@@ -128,6 +128,7 @@ kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 1 --rep
 kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 2 --replication-factor 1 --topic t.commodity.subscription-user2
 kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 5 --replication-factor 1 --topic t.commodity.subscription-purchase
 kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 5 --replication-factor 1 --topic t.commodity.subscription-offer-one
+kafka-topics.sh --bootstrap-server localhost:9092 --create  --partitions 5 --replication-factor 1 --topic  t.commodity.subscription-offer-two
 
 *             ********************************************* Kafka Stream CommodityOneStream ********************************
 // the 3 sink
@@ -243,3 +244,6 @@ kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic  t.commodity
 
 *  ********************************************* Kafka Stream SubscriptionOfferOneStream ********************************
 kafka-console-consumer.sh --bootstrap-server localhost:9092 --property print.key=true --topic t.commodity.subscription-offer-one
+
+*  ********************************************* Kafka Stream SubscriptionOfferLeftJoinStream ********************************
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --property print.key=true --topic t.commodity.subscription-offer-two
