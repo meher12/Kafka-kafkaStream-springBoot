@@ -114,3 +114,6 @@
 
 ### 3.13. Delivery Semantic:
     - Exactly Once Semantic
+
+### Avro,  Schema Registry, Rest proxy & Ksql:
+   to be continued... ;)
